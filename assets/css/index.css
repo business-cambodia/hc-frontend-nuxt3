@@ -1,0 +1,17 @@
+* {
+  font-family: "Noto Sans Khmer", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
+}
+
+::selection {
+  background: #049900;
+  color: white;
+}
+
+/* remove blue backgound on mobile press */
+a {
+  -webkit-tap-highlight-color: transparent;
+}
