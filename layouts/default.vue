@@ -1,7 +1,9 @@
 <template>
+  <LayoutsNavbar />
   <slot />
+  <LayoutsFooter />
 </template>
 
-<script setup lang="ts"></script>
+<script lang="ts" setup></script>
 
-<style scoped></style>
+<style></style>
