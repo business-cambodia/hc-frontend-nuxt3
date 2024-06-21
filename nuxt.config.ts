@@ -57,7 +57,16 @@ export default defineNuxtConfig({
         },
         { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       ],
-      script: [],
+      script: [
+        {
+          type: 'module',
+          src: 'https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js',
+        },
+        {
+          nomodule: '',
+          src: 'https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js',
+        },
+      ],
     },
   },
   css: ['~/assets/css/index.css', '~/assets/css/main.css', 'aos/dist/aos.css'],

@@ -5,8 +5,11 @@
 </template>
 
 <script setup>
-import AOS from 'aos'
-  onMounted(() => {
-    AOS.init()
-  })
+import AOS from 'aos';
+onMounted(() => {
+  AOS.init();
+});
 </script>
+<style scoped>
+/* custom style */
+</style>
