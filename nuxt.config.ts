@@ -56,6 +56,10 @@ export default defineNuxtConfig({
           href: 'https://fonts.googleapis.com/css2?family=Noto+Sans+Khmer:wght@100..900&display=swap',
         },
         { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+        {
+          rel: 'stylesheet',
+          href: 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css',
+        },
       ],
       script: [
         {
@@ -65,6 +69,9 @@ export default defineNuxtConfig({
         {
           nomodule: '',
           src: 'https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js',
+        },
+        {
+          src: 'https://kit.fontawesome.com/7c7b227626.js',
         },
       ],
     },
