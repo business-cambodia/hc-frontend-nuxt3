@@ -29,7 +29,7 @@
           <li class="mx-4 nav-item">{{ c.name }}</li>
         </NuxtLink>
       </ul>
-      <NuxtLink to="/" class="hidden lg:flex">
+      <NuxtLink to="/search" class="hidden lg:flex">
         <IconsSearch />
       </NuxtLink>
       <div class="lg:hidden flex items-center space-x-3">
@@ -39,7 +39,7 @@
           v-if="!close"
         />
         <IconsClose class="cursor-pointer" @click="toggleDrawer" v-if="close" />
-        <NuxtLink to="/">
+        <NuxtLink to="/search">
           <IconsSearch />
         </NuxtLink>
       </div>
@@ -47,11 +47,11 @@
 
     <!-- drawer -->
     <div
-      class="h-screen w-screen text-start flex right-0 items-center justify-center backdrop-blur-sm fixed z-30 lg:hidden bg-gray-900 bg-opacity-80 navbar"
+      class="h-screen w-screen text-start flex right-0 items-center justify-center backdrop-blur-sm fixed z-30 lg:hidden bg-gray-900 bg-opacity-80 navbar "
       v-if="drawer"
     >
       <ul class="">
-        <div @click="toggleDrawer" class="text-center">
+        <div @click="toggleDrawer" class="text-center ">
           <NuxtLink
             v-for="(c, index) in categories"
             :key="index"
@@ -71,7 +71,6 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
 import { categories } from '@/data/categories';
 // Adjust the path as necessary
 
