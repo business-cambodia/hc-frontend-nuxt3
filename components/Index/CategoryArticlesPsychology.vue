@@ -12,7 +12,7 @@
         មើល​បន្ថែម​
       </NuxtLink>
     </div>
-    <div
+    <div v-if="articles !== undefined && articles.length"
       class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 p-2 w-full mx-auto gap-6"
       data-aos="fade-up"
     >
@@ -21,6 +21,11 @@
         :key="index"
         :article="a"
       />
+    </div>
+    <div v-else>
+      <div class="flex justify-center items-center h-96">
+        <span class="text-gray-400">មិនមានអត្ថបទនៅឡើយ</span>
+      </div>
     </div>
   </div>
 </template>

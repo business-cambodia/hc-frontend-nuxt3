@@ -14,11 +14,16 @@ import { ReusablesArticleNewsCard } from '../../.nuxt/components';
         </NuxtLink>
       </div>
     </div>
-    <div
+    <div v-if="articles !== undefined && articles.length"
       class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 px-7 py-8"
     >
       <div v-for="(a, index) in articles" :key="index" data-aos="fade-up">
         <ReusablesArticleNewsCard :article="a" />
+      </div>
+    </div>
+    <div v-else >
+      <div class="flex justify-center items-center h-96">
+        <span class="text-gray-400">មិនមានអត្ថបទនៅឡើយ</span>
       </div>
     </div>
   </div>
@@ -27,6 +32,7 @@ import { ReusablesArticleNewsCard } from '../../.nuxt/components';
 <script setup lang="ts">
 import type { IArticle } from '~~/types/article';
 // import { defineProps } from 'vue';
+
 defineProps({
   articles: {
     type: Array<IArticle>,

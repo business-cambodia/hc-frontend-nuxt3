@@ -50,6 +50,10 @@
   
   <script setup lang="ts">
   import type { IVideo } from '~~/types/video';
+  function defineProps<T>() {
+  throw new Error('Function not implemented.');
+}
+
   defineProps<{
     video: IVideo;
   }>();

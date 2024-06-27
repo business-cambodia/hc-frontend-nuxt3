@@ -60,6 +60,9 @@
 
 <script setup lang="ts">
 import type { IArticle } from '~/types/article';
+function defineProps<T>() {
+  throw new Error('Function not implemented.');
+}
 
 defineProps<{
   article: IArticle;
@@ -82,3 +85,4 @@ function $kFormatter(num: number): string {
 </script>
 
 <style scoped></style>
+

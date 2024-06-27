@@ -24,6 +24,7 @@
 <script setup lang="ts">
 import type { IArticle } from '~/types/article';
 
+
 defineProps({
   articles: {
     type: Array<IArticle>,

@@ -1,24 +1,37 @@
 <template>
-  <div class=" md:px-4 ">
+  <div class="md:px-4">
     <div class="flex justify-between mx-4 my-8">
-        <span class="bg-primary text-white px-2 py-1 rounded-xl text-xl font-bold">{{ title }}</span>
-        <NuxtLink :to="to" class="text-gray-600 underline hover:text-gray-800 font-medium">
-            មើល​បន្ថែម​
-        </NuxtLink>
+      <span
+        class="bg-primary text-white px-2 py-1 rounded-xl text-xl font-bold"
+        >{{ title }}</span
+      >
+      <NuxtLink
+        :to="to"
+        class="text-gray-600 underline hover:text-gray-800 font-medium"
+      >
+        មើល​បន្ថែម​
+      </NuxtLink>
     </div>
-    <div class="grid grid-cols-1 p-2 w-full  mx-auto lg:grid-cols-3 gap-6" data-aos="fade-up">
-      <ReusablesArticleWeeklyCard
-        v-for="(a, index) in articles"
-        :key="index"
-        :article="a"
-      />
+    <div
+      v-if="articles !== undefined && articles.length"
+      class="grid grid-cols-1 p-2 w-full mx-auto lg:grid-cols-3 gap-6"
+      data-aos="fade-up"
+    >
+      <div v-for="(a, index) in articles" :key="index" data-aos="fade-up">
+        <ReusablesArticleWeeklyCard :article="a" />
+      </div>
+    </div>
+    <div v-else>
+      <div class="flex justify-center items-center h-96">
+        <span class="text-gray-400">មិនមានអត្ថបទនៅឡើយ</span>
+      </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import type { IArticle } from '~~/types/article';
-// import { defineProps } from 'vue'; 
+import type { IArticle } from '~/types/article';
+
 defineProps({
   articles: {
     type: Array<IArticle>,
@@ -30,5 +43,5 @@ defineProps({
 </script>
 
 <style scoped>
-/* d */
+/* Additional styles if needed */
 </style>
