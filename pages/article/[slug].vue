@@ -7,7 +7,7 @@
       :monthlyArticles="monthlyArticles"
       id="content"
     />
-    
+
     <!-- Damrei footer -->
     <div id="gax-inpage-async-1700710858"></div>
   </div>
@@ -22,7 +22,7 @@ const article = ref(
   (
     await (<Promise<IResponse<IArticle[]>>>(
       useApi(
-        `/items/article?filter[status]=published&filter[slug][_eq]=${route.params.slug}&fields=*,category.name,user_created.*`,
+        `/items/article?filter[status]=published&filter[slug][_eq]=${route.params.slug}&fields=*,category.name,user_created.*,user_created.count(articles)`,
         { method: 'GET' }
       )
     ))
@@ -53,12 +53,12 @@ const relatedArticles = ref(
 
 // to be used in monthly article
 const now = new Date();
-const firstday = new Date(now.getFullYear(), now.getMonth()-2, 1).toISOString();
+const firstday = new Date(now.getFullYear(), now.getMonth(), 1).toISOString();
 const monthlyArticles = ref(
   (
     await (<Promise<IResponse<IArticle[]>>>(
       useApi(
-        `/items/article?filter[date_created][_between]=${firstday}, ${now.toISOString()}&limit=5&fields=title,date_created,slug,image,category.name,user_created.first_name,user_created.last_name,user_created.avatar,description`,
+        `/items/article?filter[date_created][_between]=${firstday}, ${now.toISOString()}&limit=6&sort[]=-views&fields=title,date_created,slug,image,thumbnail,category.name,views,user_created.first_name,user_created.last_name,user_created.avatar,description`,
         { method: 'GET' }
       )
     ))
@@ -160,7 +160,7 @@ useHead({
       `,
     },
     {
-      src: "//ssp-cdn.gammaplatform.com/js/gaxpt.min.js",
+      src: '//ssp-cdn.gammaplatform.com/js/gaxpt.min.js',
       async: true,
     },
   ],
@@ -168,7 +168,9 @@ useHead({
   meta: [
     {
       property: 'og:image',
-      content: article.value.thumbnail ? useImg(article.value.thumbnail) : article.value.image,
+      content: article.value.thumbnail
+        ? useImg(article.value.thumbnail)
+        : article.value.image,
     },
     {
       hid: 'og:description',
@@ -188,7 +190,7 @@ useHead({
     {
       hid: 'keywords',
       name: 'keywords',
-      content: article.value.slug
+      content: article.value.slug,
     },
   ],
 });

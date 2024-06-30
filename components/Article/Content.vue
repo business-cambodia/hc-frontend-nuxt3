@@ -11,7 +11,7 @@
           </div>
           <!-- <AboveTitleAd :ads="aboveTitleAds" /> -->
           <div
-            class="text-grey-800 text-2xl lg:text-3xl lg:leading-normal font-medium lg:font-bold article-title dark:text-white"
+            class="text-grey-800 text-xl lg:text-3xl lg:leading-normal font-medium lg:font-bold article-title dark:text-white"
           >
             {{ article.title }}
           </div>
@@ -21,9 +21,9 @@
           class="flex flex-row items-start justify-between pt-1 text-xs lg:text-base"
         >
           <div
-            class="text-sm w-full flex flex-wrsap space-x-3 justify-start items-center text-gray-500 dark:text-white"
+            class="w-full flex flex-wrsap space-x-3 justify-start items-center text-gray-500 dark:text-white"
           >
-            <i class="fa-solid fa-user"></i>
+            <i class="text-[0.5rem] sm:text-xs fa-solid fa-user"></i>
             <NuxtLink :to="`/authors/${article.user_created.id}`"
               ><div class="transfrom hover:underline">
                 {{
@@ -33,10 +33,10 @@
                 }}
               </div></NuxtLink
             >
-            <i class="fa-solid fa-clock"></i>
+            <i class="text-[0.5rem] sm:text-xs fa-solid fa-clock"></i>
             <div>{{ $formatDate(article.date_created) }}</div>
             <div v-if="article.category.name !== 'PR'" class="font-bold">
-              <i class="fa-solid fa-eye"></i>
+              <i class="hidden md:blockfa-solid fa-eye"></i>
               {{ $kFormatter(article.views) }} views
             </div>
           </div>
@@ -44,11 +44,11 @@
             :href="`https://www.facebook.com/sharer.php?u=https://healthy-cambodia.com/article/${article.slug}`"
             target="_blank"
             rel="nofollow"
-            class="text-sm bg-blue-700 text-white px-3 py-1 rounded-sm flex items-center space-x-2 mr-3"
+            class="text-xs md:text-sm bg-blue-700 text-white px-3 py-1 rounded-sm flex items-center space-x-2 mr-3"
             onclick="window.open(this.href, 'share-facebook','left=50,top=50,width=600,height=320,toolbar=0'); return false;"
           >
             <i class="fab fa-facebook"></i>
-            <div>ចែករំលែក</div>
+            <div class="hidden md:block">ចែករំលែក</div>
           </a>
         </div>
       </div>
