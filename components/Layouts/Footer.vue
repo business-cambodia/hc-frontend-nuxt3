@@ -85,7 +85,7 @@
             <NuxtLink
               v-for="(c, index) in navItems"
               :key="index"
-              :to="`/categories/${c.slug}`"
+              :to="c.slug == '' ? '/' : `/categories/${c.slug}`"
             >
               <li
                 class="mx-4 duration-300 transition-all hover:scale-105 hover:underline md:text-center"

@@ -24,7 +24,7 @@
         <NuxtLink
           v-for="(c, index) in navItems"
           :key="index"
-          :to="`/categories/${c.slug}`"
+          :to="c.slug == '' ? '/' :`/categories/${c.slug}`"
         >
           <li class="mx-4 nav-item">{{ c.name }}</li>
         </NuxtLink>
@@ -55,7 +55,7 @@
           <NuxtLink
             v-for="(c, index) in navItems"
             :key="index"
-            :to="`/categories/${c.slug}`"
+            :to="c.slug === '' ? '/' :`/categories/${c.slug}`"
             class="mx-4 text-white list-none nav-menu hover:underline hover:font-semibold text-xl"
             active-class="text-white font-bold text-lg"
             exact
