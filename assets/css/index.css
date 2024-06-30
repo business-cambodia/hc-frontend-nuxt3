@@ -1,5 +1,5 @@
 * {
-  font-family: "Noto Sans Khmer", sans-serif;
+  font-family: "Noto Serif Khmer", sans-serif;
   font-optical-sizing: auto;
   font-style: normal;
   font-variation-settings:
@@ -9,6 +9,20 @@
 ::selection {
   background: #049900;
   color: white;
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background-image: -webkit-gradient(linear,40% 0%,75% 84%,from(#4D9C41),to(#19911D),color-stop(.6,#54DE5D));
+  border-radius: 10px;
+  border: 3px solid #f1f1f1;
 }
 
 /* remove blue backgound on mobile press */

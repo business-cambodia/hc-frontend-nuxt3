@@ -1,6 +1,5 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  devtools: { enabled: true },
   app: {
     head: {
       title: 'Healthy Cambodia',
@@ -53,11 +52,49 @@ export default defineNuxtConfig({
         },
         {
           rel: 'stylesheet',
-          href: 'https://fonts.googleapis.com/css2?family=Noto+Sans+Khmer:wght@100..900&display=swap',
+          href: 'https://fonts.googleapis.com/css2?family=Noto+Sans+Khmer:wght@100..900&display=swap&family=Noto+Serif+Khmer:wght@100..900&display=swap',
         },
         { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+        {
+          rel: 'stylesheet',
+          href: 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css',
+        },
       ],
-      script: [],
+      script: [
+        {
+          src: "https://www.googletagmanager.com/gtag/js?id=G-51KL6RCRTC",
+          async: true,
+        },
+        {
+          hid: 'gtmHead',
+          innerHTML: `
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-51KL6RCRTC');
+          `,
+        },
+        {
+          type: 'text/javascript',
+          body: true,
+          innerHTML: `
+            /* The region will be automatically detected if "GLOBAL" is set. */
+            /* Possible values: "SGP", "JPN", "US_WEST", "EU" */
+            var _ase_region="SGP";
+            var _ase  = _ase || [];
+            /* load placement for account: Business Cambodia, site: healthy-cambodia.com, zone size : 640x1386 */
+            _ase.push(['1700707896','1700710878']);
+          `,
+        },
+        {
+          type: 'text/javascript',
+          body: true,
+          src: '//ssp-cdn.gammaplatform.com/js/ad-exchange.js',
+        },
+        {
+          src: 'https://kit.fontawesome.com/7c7b227626.js',
+        },
+      ],
     },
   },
   css: ['~/assets/css/index.css', '~/assets/css/main.css', 'aos/dist/aos.css'],
