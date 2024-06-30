@@ -1,0 +1,3 @@
+# ignore uploaded images files
+public/uploads/*
+
