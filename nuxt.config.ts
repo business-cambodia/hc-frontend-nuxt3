@@ -1,6 +1,5 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  devtools: { enabled: true },
   app: {
     head: {
       title: 'Healthy Cambodia',
@@ -62,6 +61,19 @@ export default defineNuxtConfig({
         },
       ],
       script: [
+        {
+          src: "https://www.googletagmanager.com/gtag/js?id=G-51KL6RCRTC",
+          async: true,
+        },
+        {
+          hid: 'gtmHead',
+          innerHTML: `
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-51KL6RCRTC');
+          `,
+        },
         {
           type: 'text/javascript',
           body: true,
