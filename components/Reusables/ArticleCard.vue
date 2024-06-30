@@ -12,14 +12,14 @@
             class="object-cover h-full rounded w-full group-hover:scale-110 transition duration-300 ease-in-out"
           />
         </div>
-        <div class="p-4">
+        <div class="px-4 py-2">
           <p
             class="text-xs inline-flex items-center font-normal leading-sm uppercase px-2 py-0.5 bg-primary text-white p-1 rounded"
           >
             #{{ article.category.name }}
           </p>
           <div
-            class="font-bold text-base mt-2 text-gray-600 line-clamp-2 hover:underline cursor-pointer"
+            class="font-bold text-base leading-loose mt-2 text-gray-600 line-clamp-2 hover:underline cursor-pointer"
           >
             {{ article.title }}
           </div>
@@ -65,21 +65,6 @@ import type { IArticle } from '~/types/article';
 defineProps<{
   article: IArticle;
 }>();
-
-function $formatDate(date: string | Date): string {
-  if (!date) return ''; // Handle cases where date might be undefined or null
-  const options: Intl.DateTimeFormatOptions = {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  };
-  return new Date(date).toLocaleDateString(undefined, options);
-}
-
-function $kFormatter(num: number): string {
-  if (isNaN(num)) return '0'; // Handle cases where num might be undefined or not a number
-  return num > 999 ? (num / 1000).toFixed(1) + 'k' : num.toString();
-}
 </script>
 
 <style scoped></style>
