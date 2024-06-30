@@ -7,7 +7,7 @@
         <div class="relative h-44 overflow-hidden bg-no-repeat bg-contain">
           <img
             loading="lazy"
-            :src="article.image"
+            :src="article.thumbnail ? useImg(article.thumbnail) : article.image"
             alt=""
             class="object-cover h-full rounded w-full group-hover:scale-110 transition duration-300 ease-in-out"
           />
