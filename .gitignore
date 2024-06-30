@@ -22,3 +22,6 @@ logs
 .env
 .env.*
 !.env.example
+
+#uploaded files
+public/uploads/*
