@@ -162,6 +162,13 @@ onMounted(() => {
   runNextAuto = setTimeout(() => {
     (document.getElementById('next') as HTMLElement).click();
   }, timeAutoNext);
+
+});
+
+onUnmounted(() => {
+  clearTimeout(runTimeOut);
+
+  clearTimeout(runNextAuto);
 });
 </script>
 
