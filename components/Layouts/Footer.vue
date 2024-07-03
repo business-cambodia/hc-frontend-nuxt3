@@ -99,16 +99,16 @@
       <div class="text-left text-white p-8">
         <h1 class="text-center font-bold text-2xl">ទំនាក់ទំនងពួកយើង</h1>
         <div class="pt-4">
-          <P
+          <p
             ><i class="fa-solid fa-location-dot"></i> #HH36, St 265, Sangkat
             Teok Laok III, Khan Toul Kork
-          </P>
+          </p>
           <p>
             <i class="fa-solid fa-envelope"></i> sam.businesscambodia@gmail.com
           </p>
-          <P
+          <p
             ><i class="fa-solid fa-phone"></i> (+855) 98 850 854 / (+855) 17 300
-            755 / 93 300 755</P
+            755 / 93 300 755</p
           >
         </div>
       </div>

@@ -180,7 +180,6 @@
     </div>
   </div>
 
-  <BackToTopButton />
 </template>
 
 <script setup lang="ts">
