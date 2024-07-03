@@ -10,6 +10,9 @@
 
     <!-- Damrei footer -->
     <div id="gax-inpage-async-1700710858"></div>
+
+    <!-- Damrei footer sport -->
+    <div id="gax-inpage-async-1718359631"></div>
   </div>
 </template>
 
@@ -162,6 +165,9 @@ useHead({
         // Footer
         gammatag.defineZone({code:"gax-inpage-async-1700710858",size:[720,250],params:{siteId:"1700707896",zoneId:"1700710858",zoneType:"Inpage"}});
         gammatag.sendRequest();
+
+        // Footer sport
+        gammatag.defineZone({code:"gax-inpage-async-1718359631",size:[720,250],params:{siteId:"1700707896",zoneId:"1718359631",zoneType:"Inpage"}});
       });
       `,
     },
