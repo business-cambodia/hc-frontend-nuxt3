@@ -5,7 +5,7 @@
       <div class="">
         <div class="my-2">
           <div
-            class="border-primary w-fit px-3 text-sm py-0.5 border my-2 rounded-lg"
+            class="border-primary w-max px-3 text-sm py-0.5 border my-2 rounded-lg"
           >
             {{ article.category.name }}
           </div>
@@ -87,10 +87,16 @@
 
               <div id="part-3">
                 <div v-html="splitBody().thirdPart" class="article_body"></div>
+
+                <!-- Zone Tag : Healthy Cambodia Mobile Inpage UT ad-->
+                <div id="div-ad-innity-96617/0"></div>
               </div>
 
               <div id="the-rest">
                 <div v-html="splitBody().theRest" class="article_body"></div>
+
+                <!-- Zone Tag : Healthy Cambodia Mobile Overaly UT ad-->
+                <div id="div-ad-innity-96618/0"></div>
               </div>
             </div>
           </div>

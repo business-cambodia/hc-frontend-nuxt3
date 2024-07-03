@@ -128,7 +128,13 @@ useHead({
     {
       type: 'text/javascript',
       innerHTML: `
-        innity_adZoneAsync.q.push(function (){innity_adZoneAsync.display("386854131f58a556343e056f03626e00", "101010", {"target": "div-ad-innity-101010/0"});});
+        innity_adZoneAsync.q.push(function (){innity_adZoneAsync.display("faefec47428cf9a2f0875ba9c2042a81", "96617", {"target": "div-ad-innity-96617/0"});});
+        `,
+    },
+    {
+      type: 'text/javascript',
+      innerHTML: `
+        innity_adZoneAsync.q.push(function (){innity_adZoneAsync.display("faefec47428cf9a2f0875ba9c2042a81", "96618", {"target": "div-ad-innity-96618/0"});});
         `,
     },
     {
