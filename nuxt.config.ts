@@ -82,8 +82,8 @@ export default defineNuxtConfig({
             /* Possible values: "SGP", "JPN", "US_WEST", "EU" */
             var _ase_region="SGP";
             var _ase  = _ase || [];
-            /* load placement for account: Business Cambodia, site: healthy-cambodia.com, zone size : 640x1386 */
-            _ase.push(['1700707896','1700710878']);
+            /* load placement for account: Business Cambodia, site: healthy-cambodia.com, zone size : 282x370 */
+            _ase.push(['1700707896','1700710540']);
           `,
         },
         {
