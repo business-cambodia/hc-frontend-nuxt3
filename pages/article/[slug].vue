@@ -85,6 +85,8 @@ onMounted(() => {
   handleArticleViewed(article.value);
 });
 
+let thumbnail = article.value.thumbnail;
+
 useHead({
   script: [
     {
@@ -181,8 +183,16 @@ useHead({
     {
       property: 'og:image',
       content: article.value.thumbnail
-        ? useImg(article.value.thumbnail)
+        ? 'https://admin.healthy-cambodia.com/cms' + '/assets/' + thumbnail
         : article.value.image,
+    },
+    {
+      property: 'og:type',
+      content: 'article',
+    },
+    {
+      property: 'og:url',
+      content: 'https://healthy-cambodia.com/article/' + article.value.slug,
     },
     {
       hid: 'og:description',
