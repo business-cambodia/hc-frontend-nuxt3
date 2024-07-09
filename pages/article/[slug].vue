@@ -208,9 +208,8 @@ useHead({
 });
 
 const handleArticleViewed = async (article: IArticle) => {
-  const articleId = article.id;
-  await useApi('/items/article/' + articleId, {
-    method: 'PATCH',
+  await useApi('/article/views/' + article.slug, {
+    method: 'GET',
     data: {
       views: article.views + 1,
     },
