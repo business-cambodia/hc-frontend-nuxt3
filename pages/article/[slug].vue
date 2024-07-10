@@ -183,7 +183,7 @@ useHead({
     {
       property: 'og:image',
       content: article.value.thumbnail
-        ? 'https://admin.healthy-cambodia.com' + '/assets/' + thumbnail
+        ? 'https://healthy-cambodia.com/cms' + '/assets/' + thumbnail
         : article.value.image,
     },
     {
