@@ -24,16 +24,37 @@
         <NuxtLink
           v-for="(c, index) in navItems"
           :key="index"
-          :to="c.slug == '' ? '/' :`/categories/${c.slug}`"
+          :to="c.slug == '' ? '/' : `/categories/${c.slug}`"
         >
           <li class="mx-4 nav-item">{{ c.name }}</li>
         </NuxtLink>
+        <!-- create nuxt link go to ណាត់ជួបវេជ្ជបណ្ឌិត with dropdown -->
+        <li class="mx-4 nav-item relative group">
+          <NuxtLink to="/doctors" class="nav-link">
+            ណាត់ជួបវេជ្ជបណ្ឌិត
+          </NuxtLink>
+          <div
+            class="hidden absolute z-10 w-72 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 group-hover:block"
+          >
+            <ul
+              class="py-1 text-sm text-gray-700 dark:text-gray-200 max-h-[50vh] overflow-y-auto"
+            >
+              <li v-for="(d, indexdoc) in doctorsCategories" :key="indexdoc">
+                <NuxtLink
+                  :to="`/doctors/${d.id}`"
+                  class="block px-4 py-2 hover:bg-primary hover:text-white transition-all duration-300 dark:hover:bg-gray-600 dark:hover:text-white"
+                  >{{ d.name }}</NuxtLink
+                >
+              </li>
+            </ul>
+          </div>
+        </li>
       </ul>
       <NuxtLink to="/search" class="hidden lg:flex">
         <IconsSearch />
       </NuxtLink>
       <div class="lg:hidden flex items-center space-x-3">
-        <NuxtLink to="/search" >
+        <NuxtLink to="/search">
           <IconsSearch />
         </NuxtLink>
         <IconsClose class="cursor-pointer" @click="toggleDrawer" v-if="close" />
@@ -52,10 +73,31 @@
     >
       <ul class="">
         <div @click="toggleDrawer" class="text-center">
+          <!-- create nuxt link go to ណាត់ជួបវេជ្ជបណ្ឌិត with dropdown -->
+          <li class="mx-4 relative group">
+            <NuxtLink to="/doctors" class="text-white text-xl">
+              ណាត់ជួបវេជ្ជបណ្ឌិត
+            </NuxtLink>
+            <div
+              class="hidden absolute z-10 w-72 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 group-hover:block"
+            >
+              <ul
+                class="py-1 text-sm text-gray-700 dark:text-gray-200 max-h-[50vh] overflow-y-auto"
+              >
+                <li v-for="(d, indexdoc) in doctorsCategories" :key="indexdoc">
+                  <NuxtLink
+                    :to="`/doctors/${d.id}`"
+                    class="block px-4 py-2 hover:bg-primary hover:text-white transition-all duration-300 dark:hover:bg-gray-600 dark:hover:text-white"
+                    >{{ d.name }}</NuxtLink
+                  >
+                </li>
+              </ul>
+            </div>
+          </li>
           <NuxtLink
             v-for="(c, index) in navItems"
             :key="index"
-            :to="c.slug === '' ? '/' :`/categories/${c.slug}`"
+            :to="c.slug === '' ? '/' : `/categories/${c.slug}`"
             class="mx-4 text-white list-none nav-menu hover:underline hover:font-semibold text-xl"
             active-class="text-white font-bold text-lg"
             exact
@@ -73,6 +115,7 @@
 <script setup lang="ts">
 import type { IResponse } from '~/types/api';
 import type { ICategory } from '~/types/category';
+import type { IDoctorsCategories } from '~/types/doctors_categories';
 
 // import { categories } from '@/data/categories';
 const navItems: ICategory[] = (
@@ -84,6 +127,12 @@ const navItems: ICategory[] = (
   ))
 ).data;
 
+// fetch data from api  /items/doctors_categories
+const doctorsCategories: IDoctorsCategories[] = (
+  await (<Promise<IResponse<IDoctorsCategories[]>>>(
+    useApi('/items/doctors_categories?sort=sort', { method: 'GET' })
+  ))
+).data;
 const home: ICategory = {
   name: 'ទំព័រដើម',
   slug: '',
