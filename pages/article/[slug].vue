@@ -1,13 +1,18 @@
 <template>
   <div class="pt-20 lg:pt-24 bg-gray-100" id="article_detail">
     <ArticleContent
+      :aboveArticleAds="aboveArticleAds"
       :article="article"
+      id="content"
+      :firstParagraphAds="firstParagraphAds"
+      :secondParagraphAds="secondParagraphAds"
+      :thirdParagraphAds="thirdParagraphAds"
+      :sideBarAds="sideBarAds"
+      :aboveThumbnailAds="aboveThumbnailAds"
       :latestArticles="latestArticles"
       :relatedArticles="relatedArticles"
       :monthlyArticles="monthlyArticles"
-      id="content"
     />
-
     <!-- Damrei footer -->
     <div id="gax-inpage-async-1700710858"></div>
 
@@ -19,7 +24,19 @@
 <script setup lang="ts">
 import type { IResponse } from '~~/types/api';
 import type { IArticle } from '~~/types/article';
+import type { IAd } from '~~/types/ad';
 const route = useRoute();
+
+const ads: IAd[] = (
+  await (<Promise<IResponse<IAd[]>>>(
+    useApi(
+      '/items/advertisement?fields=name, slug,id , file,advertisement_type.type, advertiser.slug, detail_page&filter[status]=published&filter[detail_page]=true&sort[]=-order',
+      {
+        method: 'GET',
+      }
+    )
+  ))
+).data;
 
 const article = ref(
   (
@@ -225,6 +242,34 @@ const handleArticleViewed = async (article: IArticle) => {
     },
   });
 };
+
+const aboveArticleAds = ads.filter((a) => {
+  return a.advertisement_type.type === 'above-article';
+});
+
+const firstParagraphAds = ads.filter((a) => {
+  return a.advertisement_type.type === 'paragraph-1';
+});
+
+const secondParagraphAds = ads.filter((a) => {
+  return a.advertisement_type.type === 'paragraph-2';
+});
+
+const thirdParagraphAds = ads.filter((a) => {
+  return a.advertisement_type.type === 'paragraph-3';
+});
+
+const sideBarAds = ads.filter((a) => {
+  return a.advertisement_type.type === 'sidebar-right';
+});
+
+const aboveThumbnailAds = ads.filter((a) => {
+  return a.advertisement_type.type === 'above-thumbnail';
+});
+
+const bottomAd = ads.filter((a) => {
+  return a.advertisement_type.type === 'bottom';
+});
 </script>
 
 <style scoped></style>

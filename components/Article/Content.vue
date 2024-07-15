@@ -1,4 +1,9 @@
 <template>
+  <AdsAboveArticle
+    :ads="aboveArticleAds"
+    id="type_above-article"
+    type="above-article"
+  />
   <div class="lg:grid grid-cols-12 lg:mx-16">
     <div class="col-span-8 rounded-xl bg-white shadow-xl px-4">
       <!-- Header -->
@@ -59,6 +64,10 @@
         <div class="pt-2 col-span-6">
           <!-- content -->
           <div class="">
+            <AdsAboveThumbnailAds
+              :ads="aboveThumbnailAds"
+              id="above-thumbnail"
+            />
             <!-- thumbnail -->
             <img
               :src="
@@ -73,19 +82,26 @@
               class="lg:text-lg list-disc font-light dark:text-white break-words"
               id="article-body"
             >
-              <div id="part-1">
-                <div v-html="splitBody().firstPart" class="article_body"></div>
-                <!--Mobile Underlay - Zone 1-->
-                <div id="gax-inpage-async-1700710878"></div>
+              <div>
+                <AdsBody :ads="firstParagraphAds" id="paragraph-1" :body="1" />
+                <div id="part-1">
+                  <div
+                    v-html="splitBody().firstPart"
+                    class="article_body"
+                  ></div>
+                  <!--Mobile Underlay - Zone 1-->
+                  <div id="gax-inpage-async-1700710878"></div>
+                </div>
               </div>
-
               <div id="part-2">
+                <AdsBody :ads="secondParagraphAds" id="paragraph-2" :body="2" />
                 <div v-html="splitBody().secondPart" class="article_body"></div>
                 <!--Mobile Underlay - Zone 2-->
                 <div id="gax-inpage-async-1706848594"></div>
               </div>
 
               <div id="part-3">
+                <AdsBody :ads="thirdParagraphAds" id="paragraph-3" :body="3" />
                 <div v-html="splitBody().thirdPart" class="article_body"></div>
 
                 <!-- Zone Tag : Healthy Cambodia Mobile Inpage UT ad-->
@@ -168,25 +184,29 @@
           </div>
         </NuxtLink>
         <div class="sticky top-3">
-          <div
-            class="bg-white w-full h-[50vh] flex items-center justify-center rounded-lg my-3"
-          >
-            ទំនាក់ទំនងផ្សព្វផ្សាយនៅទីនេះ
-          </div>
+          <AdsSideBarRight :ads="sideBarAds" id="side-bar" />
           <!-- Damrei MR1 -->
           <div id="gax-inpage-async-1700710395"></div>
         </div>
       </div>
     </div>
   </div>
-
 </template>
 
 <script setup lang="ts">
 import type { IArticle } from '~/types/article';
+import type { IAd } from '~~/types/ad';
+import AboveArticle from '../Ads/AboveArticle.vue';
+const { $handleAdSeen } = useNuxtApp();
 
 const props = defineProps<{
+  aboveArticleAds: Array<IAd>;
   article: IArticle;
+  firstParagraphAds: Array<IAd>;
+  secondParagraphAds: Array<IAd>;
+  thirdParagraphAds: Array<IAd>;
+  sideBarAds: Array<IAd>;
+  aboveThumbnailAds: Array<IAd>;
   latestArticles: Array<IArticle>;
   relatedArticles: Array<IArticle>;
   monthlyArticles: Array<IArticle>;
@@ -203,7 +223,59 @@ const splitBody = () => {
 };
 
 // here where i toggle impression on ads seen
-onMounted(() => {});
+// here where i toggle impression on ads seen
+onMounted(() => {
+  try {
+    let observer = new IntersectionObserver(
+      async (entries) => {
+        if (entries.length) {
+          entries.forEach((e) => {
+            // if we scroll to see the ad
+            if (
+              e.isIntersecting
+              // !document.getElementById(e.target.id)?.classList.contains("seen")
+            ) {
+              $handleAdSeen(e.target.children[0].id);
+              // // make it seen and not count impression again next time
+              // document.getElementById(e.target.id)?.classList.add("seen");
+            }
+          });
+        }
+      },
+      { threshold: 0 }
+    );
+
+    // observer each ads from each article without props.page
+
+    // --> above article page
+
+    props.aboveArticleAds.forEach((a, index) => {
+      observer.observe(document.getElementById('above_ads_' + index)!);
+    });
+
+    // --> under article page
+    props.aboveThumbnailAds.forEach((a, index) => {
+      observer.observe(document.getElementById('above_thumbnail_' + index)!);
+    });
+
+    // --> body ads
+    props.firstParagraphAds.forEach((a, index) => {
+      observer.observe(document.getElementById('body_ads_' + index + '_' + 1)!);
+    });
+    props.secondParagraphAds.forEach((a, index) => {
+      observer.observe(document.getElementById('body_ads_' + index + '_' + 2)!);
+    });
+    props.thirdParagraphAds.forEach((a, index) => {
+      observer.observe(document.getElementById('body_ads_' + index + '_' + 3)!);
+    });
+    // --> side bar ads
+    props.sideBarAds.forEach((a, index) => {
+      observer.observe(document.getElementById('side_ads_' + index)!);
+    });
+  } catch (error) {
+    // console.log(error);
+  }
+});
 </script>
 
 <style>
