@@ -103,7 +103,6 @@ const damreiAds = [
   'diseases',
   'food',
   'exercise',
-  'baby-care',
   'news',
 ].includes(article.value.category.slug);
 
