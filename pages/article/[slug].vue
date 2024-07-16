@@ -30,7 +30,7 @@ const route = useRoute();
 const ads: IAd[] = (
   await (<Promise<IResponse<IAd[]>>>(
     useApi(
-      '/items/advertisement?fields=name, slug,id , file,advertisement_type.type, advertiser.slug, detail_page&filter[status]=published&filter[detail_page]=true&sort[]=-order',
+      '/items/advertisement?fields=name, slug,link,id , file,advertisement_type.type, advertiser.slug, detail_page&filter[status]=published&filter[detail_page]=true&sort[]=-order',
       {
         method: 'GET',
       }
