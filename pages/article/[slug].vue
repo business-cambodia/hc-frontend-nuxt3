@@ -42,7 +42,7 @@ const article = ref(
   (
     await (<Promise<IResponse<IArticle[]>>>(
       useApi(
-        `/items/article?filter[status]=published&filter[slug][_eq]=${route.params.slug}&fields=*,category.name,user_created.*,user_created.count(articles)`,
+        `/items/article?filter[status]=published&filter[slug][_eq]=${route.params.slug}&fields=*,category.name,category.slug,user_created.*,user_created.count(articles)`,
         { method: 'GET' }
       )
     ))
@@ -98,6 +98,15 @@ const monthlyArticles = ref(
 //   ? articles.value[0].thumbnail_facebook
 //   : articles.value[0].thumbnail;
 
+const damreiAds = [
+  'psychology',
+  'diseases',
+  'food',
+  'exercise',
+  'baby-care',
+  'news',
+].includes(article.value.category.slug);
+
 onMounted(() => {
   handleArticleViewed(article.value);
 });
@@ -149,15 +158,17 @@ useHead({
     },
     {
       type: 'text/javascript',
-      innerHTML: `
+      innerHTML: !damreiAds
+        ? `
         innity_adZoneAsync.q.push(function (){innity_adZoneAsync.display("faefec47428cf9a2f0875ba9c2042a81", "96617", {"target": "div-ad-innity-96617/0"});});
-        `,
+        `
+        : '',
     },
     {
       type: 'text/javascript',
-      innerHTML: `
+      innerHTML: !damreiAds ? `
         innity_adZoneAsync.q.push(function (){innity_adZoneAsync.display("faefec47428cf9a2f0875ba9c2042a81", "96618", {"target": "div-ad-innity-96618/0"});});
-        `,
+        ` : '',
     },
     {
       type: 'text/javascript',
@@ -170,7 +181,7 @@ useHead({
     },
     {
       type: 'text/javascript',
-      innerHTML: `
+      innerHTML: damreiAds ? `
       gammatag.cmd.push(function() {
         // Mobile Underlay 1
         gammatag.defineZone({code:"gax-inpage-async-1700710878",size:[640,1386],params:{siteId:"1700707896",zoneId:"1700710878",zoneType:"Inpage"}});
@@ -188,7 +199,7 @@ useHead({
         // Footer sport
         gammatag.defineZone({code:"gax-inpage-async-1718359631",size:[720,250],params:{siteId:"1700707896",zoneId:"1718359631",zoneType:"Inpage"}});
       });
-      `,
+      ` : '',
     },
     {
       src: '//ssp-cdn.gammaplatform.com/js/gaxpt.min.js',
