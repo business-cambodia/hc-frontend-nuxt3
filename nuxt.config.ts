@@ -75,23 +75,6 @@ export default defineNuxtConfig({
           `,
         },
         {
-          type: 'text/javascript',
-          body: true,
-          innerHTML: `
-            /* The region will be automatically detected if "GLOBAL" is set. */
-            /* Possible values: "SGP", "JPN", "US_WEST", "EU" */
-            var _ase_region="SGP";
-            var _ase  = _ase || [];
-            /* load placement for account: Business Cambodia, site: healthy-cambodia.com, zone size : 282x370 */
-            _ase.push(['1700707896','1700710540']);
-          `,
-        },
-        {
-          type: 'text/javascript',
-          body: true,
-          src: '//ssp-cdn.gammaplatform.com/js/ad-exchange.js',
-        },
-        {
           src: 'https://kit.fontawesome.com/7c7b227626.js',
         },
       ],
