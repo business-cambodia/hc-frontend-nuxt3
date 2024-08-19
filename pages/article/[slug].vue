@@ -174,32 +174,36 @@ useHead({
     {
       type: 'text/javascript',
       innerHTML: `
+      if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
         var _ase_region="SGP";
         var _ase  = _ase || [];
         var gammatag = gammatag || {};
         gammatag.cmd = gammatag.cmd || [];
+      }
         `,
     },
     {
       type: 'text/javascript',
       innerHTML: `
-      gammatag.cmd.push(function() {
-        // Mobile Underlay 1
-        gammatag.defineZone({code:"gax-inpage-async-1700710878",size:[640,1386],params:{siteId:"1700707896",zoneId:"1700710878",zoneType:"Inpage"}});
-        
-        // Mobile Underlay 2
-        gammatag.defineZone({code:"gax-inpage-async-1706848594",size:[640,1386],params:{siteId:"1700707896",zoneId:"1706848594",zoneType:"Inpage"}});
-        
-        // MR1
-        gammatag.defineZone({code:"gax-inpage-async-1700710395",size:[300,250],params:{siteId:"1700707896",zoneId:"1700710395",zoneType:"Inpage"}});
+      if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
+        gammatag.cmd.push(function() {
+          // Mobile Underlay 1
+          gammatag.defineZone({code:"gax-inpage-async-1700710878",size:[640,1386],params:{siteId:"1700707896",zoneId:"1700710878",zoneType:"Inpage"}});
+          
+          // Mobile Underlay 2
+          gammatag.defineZone({code:"gax-inpage-async-1706848594",size:[640,1386],params:{siteId:"1700707896",zoneId:"1706848594",zoneType:"Inpage"}});
+          
+          // MR1
+          gammatag.defineZone({code:"gax-inpage-async-1700710395",size:[300,250],params:{siteId:"1700707896",zoneId:"1700710395",zoneType:"Inpage"}});
 
-        // Footer
-        gammatag.defineZone({code:"gax-inpage-async-1700710858",size:[720,250],params:{siteId:"1700707896",zoneId:"1700710858",zoneType:"Inpage"}});
-        gammatag.sendRequest();
+          // Footer
+          gammatag.defineZone({code:"gax-inpage-async-1700710858",size:[720,250],params:{siteId:"1700707896",zoneId:"1700710858",zoneType:"Inpage"}});
+          gammatag.sendRequest();
 
-        // Footer sport
-        gammatag.defineZone({code:"gax-inpage-async-1718359631",size:[720,250],params:{siteId:"1700707896",zoneId:"1718359631",zoneType:"Inpage"}});
-      });
+          // Footer sport
+          gammatag.defineZone({code:"gax-inpage-async-1718359631",size:[720,250],params:{siteId:"1700707896",zoneId:"1718359631",zoneType:"Inpage"}});
+        });
+      }
       `,
     },
     {
