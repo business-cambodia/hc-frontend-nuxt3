@@ -75,7 +75,8 @@ export default defineNuxtConfig({
           `,
         },
         {
-          src: 'https://kit.fontawesome.com/7c7b227626.js',
+          src: 'https://kit.fontawesome.com/a0fb06da4e.js',
+          crossorigin: 'anonymous',
         },
       ],
     },
