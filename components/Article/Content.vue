@@ -76,7 +76,8 @@
               alt=""
               class="w-full rounded-xl object-cover bg-no-repeat bg-center lg:block mb-3"
             />
-
+            <!-- Damrei MR1 -->
+            <div id="gax-inpage-async-1700710395"></div>
             <!-- article body -->
             <div
               class="lg:text-lg list-disc font-light dark:text-white break-words"
@@ -185,8 +186,6 @@
         </NuxtLink>
         <div class="sticky top-3">
           <AdsSideBarRight :ads="sideBarAds" id="side-bar" />
-          <!-- Damrei MR1 -->
-          <div id="gax-inpage-async-1700710395"></div>
         </div>
       </div>
     </div>
