@@ -126,6 +126,8 @@
             id="gax-inpage-async-1709623758"
             class="flex justify-center"
           ></div>
+          <!--Damrei - MR1 Zone2 Mobile-->
+          <div id="gax-inpage-async-1726804113"></div>
           <ArticleAuthor :user="article.user_created" />
         </div>
         <div class="col-span-2"></div>

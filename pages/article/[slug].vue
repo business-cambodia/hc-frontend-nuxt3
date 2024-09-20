@@ -193,8 +193,11 @@ useHead({
           // Mobile Underlay 2
           gammatag.defineZone({code:"gax-inpage-async-1706848594",size:[640,1386],params:{siteId:"1700707896",zoneId:"1706848594",zoneType:"Inpage"}});
           
-          // MR1
+          // MR1 Zone1
           gammatag.defineZone({code:"gax-inpage-async-1700710395",size:[300,250],params:{siteId:"1700707896",zoneId:"1700710395",zoneType:"Inpage"}});
+
+          // MR1 Zone2
+          gammatag.defineZone({code:"gax-inpage-async-1726804113",size:[300,250],params:{siteId:"1700707896",zoneId:"1726804113",zoneType:"Inpage"}});
 
           // Footer
           gammatag.defineZone({code:"gax-inpage-async-1700710858",size:[720,250],params:{siteId:"1700707896",zoneId:"1700710858",zoneType:"Inpage"}});
