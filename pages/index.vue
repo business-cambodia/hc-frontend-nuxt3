@@ -2,6 +2,11 @@
   <div class="overflow-hidden">
     <HomeHero :articles="latestArticles" />
     <HomeCategories
+      :articles="popularArticles"
+      title="អត្ថបទពេញនិយមសរុប"
+      :to="'/popular/'"
+    />
+    <HomeCategories
       v-for="category in categoriesArticles"
       :articles="category.articles"
       :title="category.name"
@@ -19,7 +24,18 @@ const latestArticles = ref(
   (
     await (<Promise<IResponse<IArticle[]>>>(
       useApi(
-        `/items/article?filter[status]=published&sort=-date_created&fields=*,category.name,user_created.*,articles.*&limit=5`,
+        `/items/article?filter[status]=published&sort=-date_created&fields=title,slug, thumbnail,image, date_created, views, category.name,user_created.*,articles.*&limit=5`,
+        { method: 'GET' }
+      )
+    ))
+  ).data
+);
+
+const popularArticles = ref(
+  (
+    await (<Promise<IResponse<IArticle[]>>>(
+      useApi(
+        `/items/article?filter[status]=published&sort=-views&fields=title,slug, thumbnail,image, date_created, views, category.name,user_created.*,articles.*&limit=4`,
         { method: 'GET' }
       )
     ))
