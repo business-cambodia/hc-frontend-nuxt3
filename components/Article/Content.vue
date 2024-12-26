@@ -107,6 +107,12 @@
 
                 <!-- Zone Tag : Healthy Cambodia Mobile Inpage UT ad-->
                 <div id="div-ad-innity-96617/0"></div>
+
+                <!-- Zone Tag : Healthy Cambodia Mobile Responsive UT-->
+                <div
+                  id="div-ad-innity-99635/0"
+                  class="flex justify-center"
+                ></div>
               </div>
 
               <div id="the-rest">

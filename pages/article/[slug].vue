@@ -157,6 +157,12 @@ useHead({
     },
     {
       type: 'text/javascript',
+      innerHTML: `
+        innity_adZoneAsync.q.push(function (){innity_adZoneAsync.display("faefec47428cf9a2f0875ba9c2042a81", "99635", {"target": "div-ad-innity-99635/0","width": "300", "height": "250"});});
+      `,
+    },
+    {
+      type: 'text/javascript',
       innerHTML: !damreiAds
         ? `
         innity_adZoneAsync.q.push(function (){innity_adZoneAsync.display("faefec47428cf9a2f0875ba9c2042a81", "96617", {"target": "div-ad-innity-96617/0"});});
@@ -216,14 +222,16 @@ useHead({
     {
       type: 'text/javascript',
       body: true,
-      innerHTML: damreiAds ? `
+      innerHTML: damreiAds
+        ? `
             /* The region will be automatically detected if "GLOBAL" is set. */
             /* Possible values: "SGP", "JPN", "US_WEST", "EU" */
             var _ase_region="SGP";
             var _ase  = _ase || [];
             /* load placement for account: Business Cambodia, site: healthy-cambodia.com, zone size : 282x370 */
             _ase.push(['1700707896','1700710540']);
-          ` : '',
+          `
+        : '',
     },
     {
       type: 'text/javascript',
