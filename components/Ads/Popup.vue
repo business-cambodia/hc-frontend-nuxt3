@@ -17,7 +17,7 @@
             loading="lazy"
             :src="useImg(ad.file)"
             alt=""
-            class="h-full rounded-t-lg object-cover bg-center bg-no-repeat bg-cover"
+            class="h-auto rounded-t-lg object-cover bg-center bg-no-repeat bg-cover"
           />
         </a>
         <div
