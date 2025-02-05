@@ -1,4 +1,5 @@
 <template>
+  <AdsPopup :ad="popupAds[0]" :id="'popup_' + popupAds[0]?.slug" />
   <div class="pt-20 lg:pt-24 bg-gray-100" id="article_detail">
     <ArticleContent
       :aboveArticleAds="aboveArticleAds"
@@ -286,6 +287,10 @@ const handleArticleViewed = async (article: IArticle) => {
     },
   });
 };
+
+const popupAds: IAd[] = ads.filter((a) => {
+  return a.advertisement_type.type == 'popup';
+});
 
 const aboveArticleAds = ads.filter((a) => {
   return a.advertisement_type.type === 'above-article';
