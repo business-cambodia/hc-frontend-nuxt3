@@ -152,8 +152,8 @@ useHead({
     {
       type: 'text/javascript',
       innerHTML: `
-        var innity_adZoneAsync = innity_adZoneAsync || {}; 
-        innity_adZoneAsync.q = innity_adZoneAsync.q || []; 
+        var innity_adZoneAsync = innity_adZoneAsync || {};
+        innity_adZoneAsync.q = innity_adZoneAsync.q || [];
         `,
     },
     {
@@ -161,22 +161,21 @@ useHead({
       innerHTML: `
         innity_adZoneAsync.q.push(function (){innity_adZoneAsync.display("faefec47428cf9a2f0875ba9c2042a81", "99635", {"target": "div-ad-innity-99635/0","width": "300", "height": "250"});});
       `,
+      tagPosition: 'bodyClose',
     },
     {
       type: 'text/javascript',
-      innerHTML: !damreiAds
-        ? `
+      innerHTML: `
         innity_adZoneAsync.q.push(function (){innity_adZoneAsync.display("faefec47428cf9a2f0875ba9c2042a81", "96617", {"target": "div-ad-innity-96617/0"});});
-        `
-        : '',
+        `,
+      tagPosition: 'bodyClose',
     },
     {
       type: 'text/javascript',
-      innerHTML: !damreiAds
-        ? `
+      innerHTML: `
         innity_adZoneAsync.q.push(function (){innity_adZoneAsync.display("faefec47428cf9a2f0875ba9c2042a81", "96618", {"target": "div-ad-innity-96618/0"});});
-        `
-        : '',
+        `,
+      tagPosition: 'bodyClose',
     },
     {
       type: 'text/javascript',
@@ -196,10 +195,10 @@ useHead({
         gammatag.cmd.push(function() {
           // Mobile Underlay 1
           gammatag.defineZone({code:"gax-inpage-async-1700710878",size:[640,1386],params:{siteId:"1700707896",zoneId:"1700710878",zoneType:"Inpage"}});
-          
+
           // Mobile Underlay 2
           gammatag.defineZone({code:"gax-inpage-async-1706848594",size:[640,1386],params:{siteId:"1700707896",zoneId:"1706848594",zoneType:"Inpage"}});
-          
+
           // MR1 Zone1
           gammatag.defineZone({code:"gax-inpage-async-1700710395",size:[300,250],params:{siteId:"1700707896",zoneId:"1700710395",zoneType:"Inpage"}});
 
@@ -222,22 +221,22 @@ useHead({
     },
     {
       type: 'text/javascript',
-      body: true,
-      innerHTML: damreiAds
-        ? `
+      tagPosition: 'bodyClose',
+      innerHTML: `
             /* The region will be automatically detected if "GLOBAL" is set. */
             /* Possible values: "SGP", "JPN", "US_WEST", "EU" */
             var _ase_region="SGP";
             var _ase  = _ase || [];
-            /* load placement for account: Business Cambodia, site: healthy-cambodia.com, zone size : 282x370 */
+            /* damrei popup mobile, zone size : 282x370 */
             _ase.push(['1700707896','1700710540']);
-          `
-        : '',
+            /* damrei popup desktop */
+            _ase.push(['1706496252','1706497007']);
+          `,
     },
     {
       type: 'text/javascript',
-      body: true,
-      src: damreiAds ? '//ssp-cdn.gammaplatform.com/js/ad-exchange.js' : '',
+      tagPosition: 'bodyClose',
+      src: '//ssp-cdn.gammaplatform.com/js/ad-exchange.js',
     },
   ],
   title: article.value.title,
