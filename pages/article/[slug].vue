@@ -216,10 +216,6 @@ useHead({
       `,
     },
     {
-      src: '//ssp-cdn.gammaplatform.com/js/gaxpt.min.js',
-      async: true,
-    },
-    {
       type: 'text/javascript',
       tagPosition: 'bodyClose',
       innerHTML: `
@@ -227,16 +223,23 @@ useHead({
             /* Possible values: "SGP", "JPN", "US_WEST", "EU" */
             var _ase_region="SGP";
             var _ase  = _ase || [];
-            /* damrei popup mobile, zone size : 282x370 */
-            _ase.push(['1700707896','1700710540']);
-            /* damrei popup desktop */
-            _ase.push(['1706496252','1706497007']);
+            if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
+              /* damrei popup mobile, zone size : 282x370 */
+              _ase.push(['1700707896','1700710540']);
+            } else {
+              /* damrei popup desktop */
+              _ase.push(['1706496252','1706497007']);
+          }
           `,
     },
     {
       type: 'text/javascript',
       tagPosition: 'bodyClose',
       src: '//ssp-cdn.gammaplatform.com/js/ad-exchange.js',
+    },
+    {
+      src: '//ssp-cdn.gammaplatform.com/js/gaxpt.min.js',
+      async: true,
     },
   ],
   title: article.value.title,
