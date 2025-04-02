@@ -1,5 +1,7 @@
 <template>
   <AdsPopup :ad="popupAds[0]" :id="'popup_' + popupAds[0]?.slug" />
+  <!-- gpas popup -->
+  <ins data-revive-zoneid="325" data-revive-id="2d10743d9880200bf17a894cfa35dba0"></ins>
   <div class="pt-20 lg:pt-24 bg-gray-100" id="article_detail">
     <ArticleContent
       :aboveArticleAds="aboveArticleAds"
@@ -118,6 +120,10 @@ useHead({
     {
       type: 'text/javascript',
       src: 'https://platform.twitter.com/widgets.js',
+      async: true,
+    },
+    {
+      src: '//adservermsa.gpas.co/www/delivery/asyncjs.php',
       async: true,
     },
     {
