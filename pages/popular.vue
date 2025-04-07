@@ -50,7 +50,7 @@ let requesting = false;
 const articles = ref(
   (
     await useApi<IResponse<IArticle[]>>(
-      `/items/article?filter[status]=published&sort=-views&fields=title,slug, thumbnail,image, date_created, views, category.name,user_created.*,articles.*&limit=8`,
+      `/items/article?filter[status]=published&filter[date_created][_gte]=2024-01-01T00:00:00Z&sort=-views&fields=title,slug, thumbnail,image, date_created, views, category.name,user_created.*,articles.*&limit=8`,
       { method: 'GET' }
     )
   ).data
@@ -80,7 +80,7 @@ const handleScrollPagination = async () => {
     currentPage++;
     try {
       const response = await useApi<IResponse<IArticle[]>>(
-        `/items/article?filter[status]=published&sort=-views&page=${currentPage}&fields=title,slug, thumbnail,image, date_created, views, category.name,user_created.*,articles.*&limit=4`,
+        `/items/article?filter[status]=published&filter[date_created][_gte]=2024-01-01T00:00:00Z&sort=-views&page=${currentPage}&fields=title,slug, thumbnail,image, date_created, views, category.name,user_created.*,articles.*&limit=4`,
         { method: 'GET' }
       );
       articles.value = [...articles.value, ...response.data];
