@@ -114,7 +114,7 @@ const author = (
 const articles = ref(
   (
     await useApi<IResponse<IArticle[]>>(
-      `/items/article?filter[user_created][_eq]=${route.params.id}&filter[status][_eq]=published&limit=10&page=${currentPage.value}&fields=title,user_created.id,date_created,slug,views,thumbnail,image,category.name,user_created.first_name,user_created.last_name,user_created.count(article),user_created.avatar,description,category.name&sort=-date_created`,
+      `/items/article?filter[user_created][_eq]=${route.params.id}&filter[status][_eq]=published&limit=10&page=${currentPage.value}&fields=title,user_created.id,date_created,slug,views,thumbnail,image,category.name,user_created.first_name,user_created.last_name,user_created.count(articles),user_created.avatar,description,category.name&sort=-date_created`,
       { method: 'GET' }
     )
   ).data
@@ -122,7 +122,7 @@ const articles = ref(
 const fetchAuthorArticles = async () => {
   try {
     const response = await useApi<IResponse<IArticle[]>>(
-      `/items/article?filter[user_created][_eq]=${route.params.id}&filter[status][_eq]=published&limit=10&page=${currentPage.value}&fields=title,user_created.id,date_created,slug,views,thumbnail,image,category.name,user_created.first_name,user_created.last_name,user_created.count(article),user_created.avatar,description,category.name&sort=-date_created`,
+      `/items/article?filter[user_created][_eq]=${route.params.id}&filter[status][_eq]=published&limit=10&page=${currentPage.value}&fields=title,user_created.id,date_created,slug,views,thumbnail,image,category.name,user_created.first_name,user_created.last_name,user_created.count(articles),user_created.avatar,description,category.name&sort=-date_created`,
       { method: 'GET' }
     );
     articles.value = [...articles.value, ...response.data];
