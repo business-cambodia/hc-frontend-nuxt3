@@ -102,6 +102,8 @@
               </div>
 
               <div id="part-3">
+                <!-- Gpas Underlay -->
+                <ins data-revive-zoneid="399" data-revive-id="2d10743d9880200bf17a894cfa35dba0"></ins>
                 <AdsBody :ads="thirdParagraphAds" id="paragraph-3" :body="3" />
                 <div v-html="splitBody().thirdPart" class="article_body"></div>
 
