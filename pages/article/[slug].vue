@@ -1,7 +1,23 @@
 <template>
   <AdsPopup :ad="popupAds[0]" :id="'popup_' + popupAds[0]?.slug" />
-  <!-- gpas popup -->
-  <ins data-revive-zoneid="325" data-revive-id="2d10743d9880200bf17a894cfa35dba0"></ins>
+  <!-- damrei popup -->
+  <div v-if="Math.random() < 0.5" id="gax-inpage-async-1700710540"></div>
+  <ins
+    v-if="randPopUp == 0"
+    data-revive-zoneid="519"
+    data-revive-id="2d10743d9880200bf17a894cfa35dba0"
+  ></ins>
+  <ins
+    v-else-if="randPopUp == 1"
+    data-revive-zoneid="503"
+    data-revive-id="2d10743d9880200bf17a894cfa35dba0"
+  ></ins>
+  <ins
+    v-else
+    data-revive-zoneid="535"
+    data-revive-id="2d10743d9880200bf17a894cfa35dba0"
+  ></ins>
+  <!-- gpas popup above -->
   <div class="pt-20 lg:pt-24 bg-gray-100" id="article_detail">
     <ArticleContent
       :aboveArticleAds="aboveArticleAds"
@@ -29,6 +45,8 @@ import type { IResponse } from '~~/types/api';
 import type { IArticle } from '~~/types/article';
 import type { IAd } from '~~/types/ad';
 const route = useRoute();
+
+const randPopUp = Math.floor(Math.random() * 3);
 
 const ads: IAd[] = (
   await (<Promise<IResponse<IAd[]>>>(
@@ -127,25 +145,6 @@ useHead({
       async: true,
     },
     {
-      src: '//ads1.damrei.digital/www/delivery/asyncjs.php',
-      async: true,
-      defer: true,
-    },
-    {
-      src: '//ads.health.com.kh/www/delivery/asyncjs.php',
-      async: true,
-      defer: true,
-    },
-    {
-      src: '//gamma.cachefly.net/js/gaxpt.min.js',
-      async: true,
-    },
-    {
-      type: 'text/javascript',
-      src: 'https://cdn.innity.net/admanager-async.js',
-      async: true,
-    },
-    {
       type: 'text/javascript',
       src: 'https://www.tiktok.com/embed.js',
       async: true,
@@ -156,49 +155,24 @@ useHead({
       async: true,
     },
     {
-      type: 'text/javascript',
-      innerHTML: `
-        var innity_adZoneAsync = innity_adZoneAsync || {};
-        innity_adZoneAsync.q = innity_adZoneAsync.q || [];
-        `,
+      src: '//ssp-cdn.gammaplatform.com/js/gaxpt.min.js',
+      async: true,
     },
     {
       type: 'text/javascript',
       innerHTML: `
-        innity_adZoneAsync.q.push(function (){innity_adZoneAsync.display("faefec47428cf9a2f0875ba9c2042a81", "99635", {"target": "div-ad-innity-99635/0","width": "300", "height": "250"});});
-      `,
-      tagPosition: 'bodyClose',
-    },
-    {
-      type: 'text/javascript',
-      innerHTML: `
-        innity_adZoneAsync.q.push(function (){innity_adZoneAsync.display("faefec47428cf9a2f0875ba9c2042a81", "96617", {"target": "div-ad-innity-96617/0"});});
-        `,
-      tagPosition: 'bodyClose',
-    },
-    {
-      type: 'text/javascript',
-      innerHTML: `
-        innity_adZoneAsync.q.push(function (){innity_adZoneAsync.display("faefec47428cf9a2f0875ba9c2042a81", "96618", {"target": "div-ad-innity-96618/0"});});
-        `,
-      tagPosition: 'bodyClose',
-    },
-    {
-      type: 'text/javascript',
-      innerHTML: `
-      if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
         var _ase_region="SGP";
-        var _ase  = _ase || [];
         var gammatag = gammatag || {};
-        gammatag.cmd = gammatag.cmd || [];
-      }
-        `,
+        gammatag.cmd = gammatag.cmd || [];`,
     },
     {
       type: 'text/javascript',
       innerHTML: `
       if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
         gammatag.cmd.push(function() {
+          // Popup
+          gammatag.defineZone({code:"gax-inpage-async-1700710540",size:[282,370],params:{siteId:"1700707896",zoneId:"1700710540",zoneType:"Inpage"}});
+
           // Mobile Underlay 1
           gammatag.defineZone({code:"gax-inpage-async-1700710878",size:[640,1386],params:{siteId:"1700707896",zoneId:"1700710878",zoneType:"Inpage"}});
 
@@ -214,38 +188,15 @@ useHead({
           // Footer
           gammatag.defineZone({code:"gax-inpage-async-1700710858",size:[720,250],params:{siteId:"1700707896",zoneId:"1700710858",zoneType:"Inpage"}});
           gammatag.sendRequest();
-
-          // Footer sport
-          gammatag.defineZone({code:"gax-inpage-async-1718359631",size:[720,250],params:{siteId:"1700707896",zoneId:"1718359631",zoneType:"Inpage"}});
+        });
+      } else {
+        gammatag.cmd.push(function() {
+          gammatag.defineZone({code:"gax-inpage-async-1706497007",size:[1600,900],params:{siteId:"1706496252",zoneId:"1706497007",zoneType:"Inpage"}});
+          /* Define more zone(s) here, each zone per line, if you have multiple zones on the same page. */
+          gammatag.sendRequest();
         });
       }
       `,
-    },
-    {
-      type: 'text/javascript',
-      tagPosition: 'bodyClose',
-      innerHTML: `
-            /* The region will be automatically detected if "GLOBAL" is set. */
-            /* Possible values: "SGP", "JPN", "US_WEST", "EU" */
-            var _ase_region="SGP";
-            var _ase  = _ase || [];
-            if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
-              /* damrei popup mobile, zone size : 282x370 */
-              _ase.push(['1700707896','1700710540']);
-            } else {
-              /* damrei popup desktop */
-              _ase.push(['1706496252','1706497007']);
-          }
-          `,
-    },
-    {
-      type: 'text/javascript',
-      tagPosition: 'bodyClose',
-      src: '//ssp-cdn.gammaplatform.com/js/ad-exchange.js',
-    },
-    {
-      src: '//ssp-cdn.gammaplatform.com/js/gaxpt.min.js',
-      async: true,
     },
   ],
   title: article.value.title,
