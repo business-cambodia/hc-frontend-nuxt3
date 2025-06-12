@@ -1,5 +1,6 @@
 <template>
   <AdsPopup :ad="popupAds[0]" :id="'popup_' + popupAds[0]?.slug" />
+  <div id="gax-inpage-async-1706497007"></div>
   <!-- damrei popup -->
   <div v-if="Math.random() < 0.5" id="gax-inpage-async-1700710540"></div>
   <ins
