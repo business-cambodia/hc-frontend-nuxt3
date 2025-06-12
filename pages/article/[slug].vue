@@ -3,7 +3,7 @@
   <!-- damrei popup -->
   <div v-if="Math.random() < 0.5" id="gax-inpage-async-1700710540"></div>
   <ins
-    v-if="randPopUp == 0"
+    v-else-if="randPopUp == 0"
     data-revive-zoneid="519"
     data-revive-id="2d10743d9880200bf17a894cfa35dba0"
   ></ins>
