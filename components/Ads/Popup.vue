@@ -1,5 +1,5 @@
 <template>
-  <div v-if="ad && ad !== undefined">
+  <div v-if="showAd && ad && ad !== undefined">
     <div
       class="w-screen h-screen fixed backdrop-blur-sm z-[9999999999] popup flex items-center justify-center mb-20"
     >
@@ -44,6 +44,7 @@ import type { IAd } from '~~/types/ad';
 const { $handleAdSeen }: any = useNuxtApp();
 
 const timer = ref(5);
+const showAd = ref(false);
 const props = defineProps<{
   ad: IAd | undefined;
 }>();
@@ -68,7 +69,12 @@ const handleClosePopup = () => {
 
 onMounted(async () => {
   if (props.ad) {
-    handleCountDown();
+    // Delay showing the ad for 5 seconds
+    setTimeout(() => {
+      showAd.value = true;
+      handleCountDown();
+    }, 5000);
+    
     await $handleAdSeen(props?.ad?.slug);
   }
 });
