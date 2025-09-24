@@ -3,21 +3,28 @@
   <div id="gax-inpage-async-1706497007"></div>
   <!-- damrei popup -->
   <div v-if="Math.random() < 0.5" id="gax-inpage-async-1700710540"></div>
+ <!-- gpas popup -->
   <ins
-    v-else-if="randPopUp == 0"
+    v-if="randPopUp === 519"
     data-revive-zoneid="519"
     data-revive-id="2d10743d9880200bf17a894cfa35dba0"
   ></ins>
   <ins
-    v-else-if="randPopUp == 1"
+    v-else-if="randPopUp === 503"
     data-revive-zoneid="503"
     data-revive-id="2d10743d9880200bf17a894cfa35dba0"
   ></ins>
   <ins
-    v-else
+    v-else-if="randPopUp === 535"
     data-revive-zoneid="535"
     data-revive-id="2d10743d9880200bf17a894cfa35dba0"
   ></ins>
+  <ins
+    v-else
+    data-revive-zoneid="555"
+    data-revive-id="2d10743d9880200bf17a894cfa35dba0"
+  ></ins>
+
   <!-- gpas popup above -->
   <div class="pt-20 lg:pt-24 bg-gray-100" id="article_detail">
     <ArticleContent
@@ -47,7 +54,15 @@ import type { IArticle } from '~~/types/article';
 import type { IAd } from '~~/types/ad';
 const route = useRoute();
 
-const randPopUp = Math.floor(Math.random() * 3);
+// Weighted random for GPAS popup
+function getWeightedRand() {
+  const pool = [555, 555, 555, 555, 519, 503, 535]; 
+  // Zone 555 has 4x weight compared to others
+  return pool[Math.floor(Math.random() * pool.length)];
+}
+
+const randPopUp = getWeightedRand();
+
 
 const ads: IAd[] = (
   await (<Promise<IResponse<IAd[]>>>(
@@ -192,11 +207,15 @@ useHead({
         });
       } else {
         gammatag.cmd.push(function() {
+          // popup
           gammatag.defineZone({code:"gax-inpage-async-1706497007",size:[1600,900],params:{siteId:"1706496252",zoneId:"1706497007",zoneType:"Inpage"}});
           /* Define more zone(s) here, each zone per line, if you have multiple zones on the same page. */
+          // MR1 desktop
+          gammatag.defineZone({code:"gax-inpage-async-1719845094",size:[300,250],params:{siteId:"1706496252",zoneId:"1719845094",zoneType:"Inpage"}});  
+
           gammatag.sendRequest();
         });
-      }
+      } 
       `,
     },
   ],
