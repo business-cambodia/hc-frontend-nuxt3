@@ -2,7 +2,7 @@
   <AdsPopup :ad="popupAds[0]" :id="'popup_' + popupAds[0]?.slug" />
   <div id="gax-inpage-async-1706497007"></div>
   <!-- damrei popup -->
-  <div v-if="Math.random() < 0.5" id="gax-inpage-async-1700710540"></div>
+  <div v-if="Math.random() < 0.7" id="gax-inpage-async-1700710540"></div>
   <ins
     v-else
     data-revive-zoneid="555"
@@ -54,12 +54,7 @@ import type { IAd } from '~~/types/ad';
 const route = useRoute();
 
 // Weighted random for GPAS popup
-function getWeightedRand() {
-  const pool = [555, 555, 555, 555, 519, 503, 535]; 
-  return pool[Math.floor(Math.random() * pool.length)];
-}
-
-const randPopUp = getWeightedRand();
+const randPopUp = Math.floor(Math.random() * 3);
 
 
 const ads: IAd[] = (
