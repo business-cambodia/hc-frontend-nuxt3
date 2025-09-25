@@ -3,6 +3,11 @@
   <div id="gax-inpage-async-1706497007"></div>
   <!-- damrei popup -->
   <div v-if="Math.random() < 0.5" id="gax-inpage-async-1700710540"></div>
+  <ins
+    v-else
+    data-revive-zoneid="555"
+    data-revive-id="2d10743d9880200bf17a894cfa35dba0"
+  ></ins>
  <!-- gpas popup -->
   <ins
     v-if="randPopUp === 519"
@@ -19,12 +24,6 @@
     data-revive-zoneid="535"
     data-revive-id="2d10743d9880200bf17a894cfa35dba0"
   ></ins>
-  <ins
-    v-else
-    data-revive-zoneid="555"
-    data-revive-id="2d10743d9880200bf17a894cfa35dba0"
-  ></ins>
-
   <!-- gpas popup above -->
   <div class="pt-20 lg:pt-24 bg-gray-100" id="article_detail">
     <ArticleContent
@@ -57,7 +56,6 @@ const route = useRoute();
 // Weighted random for GPAS popup
 function getWeightedRand() {
   const pool = [555, 555, 555, 555, 519, 503, 535]; 
-  // Zone 555 has 4x weight compared to others
   return pool[Math.floor(Math.random() * pool.length)];
 }
 
