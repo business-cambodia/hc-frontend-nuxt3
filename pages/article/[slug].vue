@@ -3,11 +3,7 @@
   <div id="gax-inpage-async-1706497007"></div>
   <!-- damrei popup -->
   <div v-if="Math.random() < 0.7" id="gax-inpage-async-1700710540"></div>
-  <ins
-    v-else
-    data-revive-zoneid="555"
-    data-revive-id="2d10743d9880200bf17a894cfa35dba0"
-  ></ins>
+  
  <!-- gpas popup -->
   <ins
     v-if="randPopUp === 519"
@@ -200,18 +196,34 @@ useHead({
         });
       } else {
         gammatag.cmd.push(function() {
-          // popup
-          gammatag.defineZone({code:"gax-inpage-async-1706497007",size:[1600,900],params:{siteId:"1706496252",zoneId:"1706497007",zoneType:"Inpage"}});
-          /* Define more zone(s) here, each zone per line, if you have multiple zones on the same page. */
-          // MR1 desktop
-          gammatag.defineZone({code:"gax-inpage-async-1719845094",size:[300,250],params:{siteId:"1706496252",zoneId:"1719845094",zoneType:"Inpage"}});  
+          // Damrei popup
+          gammatag.defineZone({
+            code:"gax-inpage-async-1700710540",
+            size:[282,370],
+            params:{siteId:"1700707896",zoneId:"1700710540",zoneType:"Inpage"}
+          });
 
+          // Existing desktop zones
+          gammatag.defineZone({code:"gax-inpage-async-1706497007",size:[1600,900],params:{siteId:"1706496252",zoneId:"1706497007",zoneType:"Inpage"}});
+          gammatag.defineZone({code:"gax-inpage-async-1719845094",size:[300,250],params:{siteId:"1706496252",zoneId:"1719845094",zoneType:"Inpage"}});
+          
           gammatag.sendRequest();
         });
       } 
       `,
     },
   ],
+  // else {
+  //       gammatag.cmd.push(function() {
+  //         // popup
+  //         gammatag.defineZone({code:"gax-inpage-async-1706497007",size:[1600,900],params:{siteId:"1706496252",zoneId:"1706497007",zoneType:"Inpage"}});
+  //         /* Define more zone(s) here, each zone per line, if you have multiple zones on the same page. */
+  //         // MR1 desktop
+  //         gammatag.defineZone({code:"gax-inpage-async-1719845094",size:[300,250],params:{siteId:"1706496252",zoneId:"1719845094",zoneType:"Inpage"}});  
+
+  //         gammatag.sendRequest();
+  //       });
+  //     } 
   title: article.value.title,
   meta: [
     {
