@@ -13,7 +13,7 @@
     ></ins>
   </template>
  <!-- gpas popup -->
-  <ins
+  <!-- <ins
     v-if="randPopUp === 519"
     data-revive-zoneid="519"
     data-revive-id="2d10743d9880200bf17a894cfa35dba0"
@@ -27,7 +27,7 @@
     v-else-if="randPopUp === 535"
     data-revive-zoneid="535"
     data-revive-id="2d10743d9880200bf17a894cfa35dba0"
-  ></ins>
+  ></ins> -->
   <!-- gpas popup above -->
   <div class="pt-20 lg:pt-24 bg-gray-100" id="article_detail">
     <ArticleContent
