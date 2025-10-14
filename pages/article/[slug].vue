@@ -7,27 +7,33 @@
   </template>
   <!-- <div v-if="Math.random() < 0.7" id="gax-inpage-async-1700710540"></div> -->
   <!-- gpas pop ins data-revive-zoneid="568" data-revive-id="2d10743d9880200bf17a894cfa35dba0"></ins> -->
-   <template v-else>
+    <!-- <template v-else>
     <ins
       data-revive-zoneid="568" data-revive-id="2d10743d9880200bf17a894cfa35dba0"
     ></ins>
-  </template>
- <!-- gpas popup -->
-  <!-- <ins
+  </template> -->
+  <!-- gpas popup -->
+   <ins
     v-if="randPopUp === 519"
     data-revive-zoneid="519"
     data-revive-id="2d10743d9880200bf17a894cfa35dba0"
-  ></ins>
+  />
   <ins
     v-else-if="randPopUp === 503"
     data-revive-zoneid="503"
     data-revive-id="2d10743d9880200bf17a894cfa35dba0"
-  ></ins>
+  />
   <ins
     v-else-if="randPopUp === 535"
     data-revive-zoneid="535"
     data-revive-id="2d10743d9880200bf17a894cfa35dba0"
-  ></ins> -->
+  />
+  <ins
+    v-else
+    data-revive-zoneid="568"
+    data-revive-id="2d10743d9880200bf17a894cfa35dba0"
+  />
+
   <!-- gpas popup above -->
   <div class="pt-20 lg:pt-24 bg-gray-100" id="article_detail">
     <ArticleContent
