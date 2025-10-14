@@ -2,9 +2,13 @@
   <AdsPopup :ad="popupAds[0]" :id="'popup_' + popupAds[0]?.slug" />
   <div id="gax-inpage-async-1706497007"></div>
   <!-- damrei popup -->
-  <div  v-if="Math.random() < 0.7" id="gax-inpage-async-1700710540"></div>
+  <div v-if="showDamreiPopup" id="gax-inpage-async-1700710540"></div>
   <!-- gpas popup -->
-  <ins v-else data-revive-zoneid="568" data-revive-id="2d10743d9880200bf17a894cfa35dba0"></ins>
+ <ins 
+  v-if="!showDamreiPopup" 
+  data-revive-zoneid="568" 
+  data-revive-id="2d10743d9880200bf17a894cfa35dba0"
+></ins>
   <!-- gpas popup -->
    <ins
     v-if="randPopUp === 519"
@@ -52,7 +56,7 @@ const route = useRoute();
 
 // Weighted random for GPAS popup
 const randPopUp = Math.floor(Math.random() * 3);
-
+const showDamreiPopup = Math.random() < 0.7;
 
 const ads: IAd[] = (
   await (<Promise<IResponse<IAd[]>>>(
@@ -135,6 +139,20 @@ const damreiAds = [
 
 onMounted(() => {
   handleArticleViewed(article.value);
+  
+  // Initialize GPAS ad serving
+  if (typeof window !== 'undefined') {
+    const initRevive = () => {
+      if ((window as any).reviveAsync) {
+        if (typeof (window as any).reviveAsync.loadZones === 'function') {
+          (window as any).reviveAsync.loadZones();
+        }
+      } else {
+        setTimeout(initRevive, 100);
+      }
+    };
+    initRevive();
+  }
 });
 
 let thumbnail = article.value.thumbnail;
