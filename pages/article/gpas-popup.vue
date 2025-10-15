@@ -146,7 +146,7 @@ const statusMessage = ref('⏳ Initializing...');
 const statusType = ref<'loading' | 'success' | 'error'>('loading');
 let checkCount = 0;
 const maxChecks = 30;
-let adCheckInterval: NodeJS.Timeout | null = null;
+let adCheckInterval: ReturnType<typeof setInterval> | null = null;
 
 // Computed
 const statusClass = computed(() => {
@@ -256,7 +256,7 @@ const checkPopupBlocker = () => {
 };
 
 const clearCookies = () => {
-  if (process.client) {
+  if (typeof window !== 'undefined') {
     document.cookie.split(";").forEach((c) => {
       document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
     });
@@ -289,7 +289,7 @@ const inspectAdContent = () => {
 };
 
 const reloadPage = () => {
-  if (process.client) {
+  if (typeof window !== 'undefined') {
     location.reload();
   }
 };
