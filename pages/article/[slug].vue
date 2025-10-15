@@ -2,10 +2,9 @@
   <AdsPopup :ad="popupAds[0]" :id="'popup_' + popupAds[0]?.slug" />
   <div id="gax-inpage-async-1706497007"></div>
   <!-- damrei popup -->
-  <!-- Damrei or GPAS popup -->
-  <ins  v-if="showDamrei" data-revive-zoneid="568" data-revive-id="2d10743d9880200bf17a894cfa35dba0"></ins>
-  <div v-else id="gax-inpage-async-1700710540"></div>
-
+  <div  v-if="Math.random() < 0.7" id="gax-inpage-async-1700710540"></div>
+  <!-- gpas popup -->
+  <ins v-else data-revive-zoneid="568" data-revive-id="2d10743d9880200bf17a894cfa35dba0"></ins>
   <!-- gpas popup -->
    <ins
     v-if="randPopUp === 519"
@@ -50,10 +49,9 @@ import type { IResponse } from '~~/types/api';
 import type { IArticle } from '~~/types/article';
 import type { IAd } from '~~/types/ad';
 const route = useRoute();
-const showDamrei = Math.random() < 0.7; // 70% chance Damrei
-const randPopUpList = [519, 503, 535];
+
 // Weighted random for GPAS popup
-const randPopUp = randPopUpList[Math.floor(Math.random() * randPopUpList.length)];
+const randPopUp = Math.floor(Math.random() * 3);
 
 
 const ads: IAd[] = (
