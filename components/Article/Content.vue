@@ -124,10 +124,10 @@
                 <!-- Zone Tag : Healthy Cambodia Mobile Overaly UT ad-->
                 <div id="div-ad-innity-96618/0"></div>
                 <!-- GPAS Underlay - Phosphalugel Oct -->
-                 <ins
+                 <!-- <ins
                   data-revive-zoneid="575"
                   data-revive-id="2d10743d9880200bf17a894cfa35dba0"
-                ></ins>
+                ></ins> -->
               </div>
             </div>
           </div>
