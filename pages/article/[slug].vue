@@ -5,7 +5,7 @@
   <!-- damrei popup -->
   <div  v-if="Math.random() < 0.5" id="gax-inpage-async-1700710540"></div>
   <!-- gpas popup -->
-  <ins v-else data-revive-zoneid="568" data-revive-id="2d10743d9880200bf17a894cfa35dba0"></ins>
+  <ins v-else data-revive-zoneid="623" data-revive-id="2d10743d9880200bf17a894cfa35dba0"></ins>
   <!-- gpas popup -->
    <ins
     v-if="randPopUp === 519"
