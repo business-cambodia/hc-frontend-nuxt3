@@ -91,20 +91,20 @@
                     v-html="splitBody().firstPart"
                     class="article_body"
                   ></div>
-                  <!--Mobile Underlay - Zone 1-->
-                  <div id="gax-inpage-async-1700710878"></div>
+                  <!--Mobile Underlay - Zone 1 [HIDDEN]-->
+                  <!-- <div id="gax-inpage-async-1700710878"></div> -->
                 </div>
               </div>
               <div id="part-2">
                 <AdsBody :ads="secondParagraphAds" id="paragraph-2" :body="2" />
                 <div v-html="splitBody().secondPart" class="article_body"></div>
-                <!--Mobile Underlay - Zone 2-->
-                <div id="gax-inpage-async-1706848594"></div>
+                <!--Mobile Underlay - Zone 2 [HIDDEN]-->
+                <!-- <div id="gax-inpage-async-1706848594"></div> -->
               </div>
 
               <div id="part-3">
-                <!-- Gpas Underlay -->
-                <ins data-revive-zoneid="399" data-revive-id="2d10743d9880200bf17a894cfa35dba0"></ins>
+                <!-- Gpas Underlay [HIDDEN] -->
+                <!-- <ins data-revive-zoneid="399" data-revive-id="2d10743d9880200bf17a894cfa35dba0"></ins> -->
                 <AdsBody :ads="thirdParagraphAds" id="paragraph-3" :body="3" />
                 <div v-html="splitBody().thirdPart" class="article_body"></div>
 

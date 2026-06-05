@@ -10,7 +10,7 @@
   <!-- gpas popup -->
   <!-- <ins v-else data-revive-zoneid="623" data-revive-id="2d10743d9880200bf17a894cfa35dba0"></ins> -->
   <!-- gpas popup -->
-   <ins
+   <!-- <ins
     v-if="randPopUp === 519"
     data-revive-zoneid="519"
     data-revive-id="2d10743d9880200bf17a894cfa35dba0"
@@ -24,7 +24,7 @@
     v-else-if="randPopUp === 535"
     data-revive-zoneid="535"
     data-revive-id="2d10743d9880200bf17a894cfa35dba0"
-  />
+  /> -->
   <!-- gpas popup above -->
   <div class="pt-20 lg:pt-24 bg-gray-100" id="article_detail">
     <ArticleContent
@@ -190,11 +190,11 @@ useHead({
           // Popup
           gammatag.defineZone({code:"gax-inpage-async-1700710540",size:[282,370],params:{siteId:"1700707896",zoneId:"1700710540",zoneType:"Inpage"}});
 
-          // Mobile Underlay 1
-          gammatag.defineZone({code:"gax-inpage-async-1700710878",size:[640,1386],params:{siteId:"1700707896",zoneId:"1700710878",zoneType:"Inpage"}});
+          // Mobile Underlay 1 [HIDDEN]
+          // gammatag.defineZone({code:"gax-inpage-async-1700710878",size:[640,1386],params:{siteId:"1700707896",zoneId:"1700710878",zoneType:"Inpage"}});
 
-          // Mobile Underlay 2
-          gammatag.defineZone({code:"gax-inpage-async-1706848594",size:[640,1386],params:{siteId:"1700707896",zoneId:"1706848594",zoneType:"Inpage"}});
+          // Mobile Underlay 2 [HIDDEN]
+          // gammatag.defineZone({code:"gax-inpage-async-1706848594",size:[640,1386],params:{siteId:"1700707896",zoneId:"1706848594",zoneType:"Inpage"}});
 
           // MR1 Zone1
           gammatag.defineZone({code:"gax-inpage-async-1700710395",size:[300,250],params:{siteId:"1700707896",zoneId:"1700710395",zoneType:"Inpage"}});
