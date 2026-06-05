@@ -66,49 +66,58 @@
       </div>
     </div>
 
-    <!-- drawer -->
-    <div
-      class="h-screen w-screen text-start flex right-0 items-center justify-center backdrop-blur-sm fixed z-30 lg:hidden bg-gray-900 bg-opacity-80 navbar"
-      v-if="drawer"
-    >
-      <ul class="">
-        <div @click="toggleDrawer" class="text-center">
-          <!-- create nuxt link go to ណាត់ជួបវេជ្ជបណ្ឌិត with dropdown -->
-          <li class="mx-4 relative group">
-            <NuxtLink to="/doctors" class="text-white text-xl">
-              ណាត់ជួបវេជ្ជបណ្ឌិត
-            </NuxtLink>
-            <div
-              class="hidden absolute z-10 w-72 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 group-hover:block"
-            >
-              <ul
-                class="py-1 text-sm text-gray-700 dark:text-gray-200 max-h-[50vh] overflow-y-auto"
-              >
-                <li v-for="(d, indexdoc) in doctorsCategories" :key="indexdoc">
-                  <NuxtLink
-                    :to="`/doctors/${d.id}`"
-                    class="block px-4 py-2 hover:bg-primary hover:text-white transition-all duration-300 dark:hover:bg-gray-600 dark:hover:text-white"
-                    >{{ d.name }}</NuxtLink
-                  >
-                </li>
-              </ul>
-            </div>
-          </li>
+    <!-- Mobile drawer underlay / backdrop -->
+    <Transition name="fade">
+      <div
+        v-if="drawer"
+        class="mobile-underlay"
+        @click="toggleDrawer"
+      />
+    </Transition>
+
+    <!-- Slide-in side drawer -->
+    <Transition name="slide">
+      <div
+        v-if="drawer"
+        class="mobile-drawer"
+      >
+        <!-- Drawer header -->
+        <div class="drawer-header">
+          <NuxtLink to="/" @click="toggleDrawer">
+            <img src="/static/logo.png" class="w-10 object-cover" alt="BC Logo" />
+          </NuxtLink>
+          <button class="drawer-close-btn" @click="toggleDrawer" aria-label="Close menu">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+
+        <!-- Drawer nav links -->
+        <nav class="drawer-nav">
           <NuxtLink
             v-for="(c, index) in navItems"
             :key="index"
             :to="c.slug === '' ? '/' : `/categories/${c.slug}`"
-            class="mx-4 text-white list-none nav-menu hover:underline hover:font-semibold text-xl"
-            active-class="text-white font-bold text-lg"
+            class="drawer-link"
+            active-class="drawer-link--active"
             exact
+            @click="toggleDrawer"
           >
-            <li class="text-center">
-              {{ c.name }}
-            </li>
+            {{ c.name }}
           </NuxtLink>
-        </div>
-      </ul>
-    </div>
+
+          <!-- ណាត់ជួបវេជ្ជបណ្ឌិត -->
+          <NuxtLink
+            to="/doctors"
+            class="drawer-link"
+            @click="toggleDrawer"
+          >
+            ណាត់ជួបវេជ្ជបណ្ឌិត
+          </NuxtLink>
+        </nav>
+      </div>
+    </Transition>
   </div>
 </template>
 
@@ -188,55 +197,11 @@ onMounted(async () => {
 </script>
 
 <style>
-.backdrop-blur-sm {
-  backdrop-filter: blur(10px);
-}
 .navbar {
   transition: top 0.7s ease-in-out;
 }
-.dropdown {
-  position: relative;
-  display: inline-block;
-}
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f1f1f1;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  z-index: 1;
-}
-.dropdown-content a {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-}
-.dropdown-content a:hover {
-  background-color: #ddd;
-}
-.dropdown:hover .dropdown-content {
-  display: block;
-}
-.dropdown:hover .dropbtn {
-  background-color: #3e8e41;
-}
-.nav-menu {
-  background: rgba(0, 0, 0, 0.8);
-  opacity: 0;
-  visibility: hidden;
-  transition: 0.5s;
-}
-.open .nav-menu {
-  opacity: 1;
-  visibility: visible;
-}
-.nav-menu > li {
-  color: #f9f9f9;
-  text-decoration: none;
-}
-.open .nav-menu > li {
-  animation: appear 0.3s both;
-}
+
+/* ── Desktop nav underline hover ──────────────────── */
 .nav-item {
   position: relative;
 }
@@ -264,12 +229,110 @@ onMounted(async () => {
 }
 .nav-item:hover:after {
   width: 50%;
-  transform: translateX(100);
 }
 .nav-item:hover:before {
   width: 50%;
-  transform: translateX(-100);
 }
+
+/* ── Mobile underlay backdrop ─────────────────────── */
+.mobile-underlay {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+/* ── Slide-in drawer ──────────────────────────────── */
+.mobile-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 40;
+  height: 100dvh;
+  width: min(80vw, 320px);
+  background: #ffffff;
+  box-shadow: -4px 0 24px rgba(0, 0, 0, 0.18);
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.drawer-close-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+  border: none;
+  background: #f3f4f6;
+  color: #374151;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.drawer-close-btn:hover {
+  background: #e5e7eb;
+}
+
+.drawer-nav {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 0;
+  gap: 0;
+}
+
+.drawer-link {
+  display: block;
+  padding: 0.875rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #1f2937;
+  text-decoration: none;
+  border-left: 3px solid transparent;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+.drawer-link:hover {
+  background: #f0fdf4;
+  border-left-color: #049900;
+  color: #049900;
+}
+.drawer-link--active {
+  background: #f0fdf4;
+  border-left-color: #049900;
+  color: #049900;
+  font-weight: 700;
+}
+
+/* ── Fade transition (underlay) ───────────────────── */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+/* ── Slide transition (drawer panel) ─────────────── */
+.slide-enter-active,
+.slide-leave-active {
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.slide-enter-from,
+.slide-leave-to {
+  transform: translateX(100%);
+}
+
 @keyframes appear {
   0% {
     opacity: 0;

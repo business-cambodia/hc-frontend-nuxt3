@@ -54,8 +54,9 @@ import type { IArticle } from '~~/types/article';
 import type { IAd } from '~~/types/ad';
 const route = useRoute();
 
-// Weighted random for GPAS popup
-const randPopUp = Math.floor(Math.random() * 3);
+// Weighted random for GPAS popup — pick one of the valid zone IDs
+const gpasPopupZones = [519, 503, 535];
+const randPopUp = gpasPopupZones[Math.floor(Math.random() * gpasPopupZones.length)];
 
 
 const ads: IAd[] = (
@@ -139,6 +140,15 @@ const damreiAds = [
 
 onMounted(() => {
   handleArticleViewed(article.value);
+
+  // Load GPAS Revive ad script dynamically — silently ignore if the ad server is unreachable
+  const gpasScript = document.createElement('script');
+  gpasScript.src = '//adservermsa.gpas.co/www/delivery/asyncjs.php';
+  gpasScript.async = true;
+  gpasScript.onerror = () => {
+    // Ad server unreachable (ERR_CONNECTION_CLOSED) — fail silently, no console error
+  };
+  document.head.appendChild(gpasScript);
 });
 
 let thumbnail = article.value.thumbnail;
@@ -150,10 +160,7 @@ useHead({
       src: 'https://platform.twitter.com/widgets.js',
       async: true,
     },
-    {
-      src: '//adservermsa.gpas.co/www/delivery/asyncjs.php',
-      async: true,
-    },
+    // GPAS Revive ad script — loaded dynamically in onMounted to handle ERR_CONNECTION_CLOSED silently
     {
       type: 'text/javascript',
       src: 'https://www.tiktok.com/embed.js',
