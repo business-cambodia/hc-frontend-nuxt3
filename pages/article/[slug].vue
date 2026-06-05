@@ -190,11 +190,11 @@ useHead({
           // Popup
           gammatag.defineZone({code:"gax-inpage-async-1700710540",size:[282,370],params:{siteId:"1700707896",zoneId:"1700710540",zoneType:"Inpage"}});
 
-          // Mobile Underlay 1 [HIDDEN]
-          // gammatag.defineZone({code:"gax-inpage-async-1700710878",size:[640,1386],params:{siteId:"1700707896",zoneId:"1700710878",zoneType:"Inpage"}});
+          // Mobile Underlay 1
+          gammatag.defineZone({code:"gax-inpage-async-1700710878",size:[640,1386],params:{siteId:"1700707896",zoneId:"1700710878",zoneType:"Inpage"}});
 
-          // Mobile Underlay 2 [HIDDEN]
-          // gammatag.defineZone({code:"gax-inpage-async-1706848594",size:[640,1386],params:{siteId:"1700707896",zoneId:"1706848594",zoneType:"Inpage"}});
+          // Mobile Underlay 2
+          gammatag.defineZone({code:"gax-inpage-async-1706848594",size:[640,1386],params:{siteId:"1700707896",zoneId:"1706848594",zoneType:"Inpage"}});
 
           // MR1 Zone1
           gammatag.defineZone({code:"gax-inpage-async-1700710395",size:[300,250],params:{siteId:"1700707896",zoneId:"1700710395",zoneType:"Inpage"}});

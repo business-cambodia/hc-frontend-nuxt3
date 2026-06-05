@@ -91,14 +91,14 @@
                     v-html="splitBody().firstPart"
                     class="article_body"
                   ></div>
-                  <!--Mobile Underlay - Zone 1 [HIDDEN]-->
+                  <!--Mobile Underlay - Zone 1-->
                   <div id="gax-inpage-async-1700710878"></div>
                 </div>
               </div>
               <div id="part-2">
                 <AdsBody :ads="secondParagraphAds" id="paragraph-2" :body="2" />
                 <div v-html="splitBody().secondPart" class="article_body"></div>
-                <!--Mobile Underlay - Zone 2 [HIDDEN]-->
+                <!--Mobile Underlay - Zone 2-->
                 <div id="gax-inpage-async-1706848594"></div>
               </div>
 
