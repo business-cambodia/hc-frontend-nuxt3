@@ -150,46 +150,38 @@ onMounted(() => {
   // };
   // document.head.appendChild(gpasScript);
 
-  // Load Damrei (Gamma) ad script and push zone definitions once loaded
-  // Following the official Damrei integration pattern exactly
+  // Initialize and request Damrei (Gamma) ad zones
   (window as any).gammatag = (window as any).gammatag || {};
   (window as any).gammatag.cmd = (window as any).gammatag.cmd || [];
-  (window as any)._ase_region = 'SGP';
 
-  const damreiScript = document.createElement('script');
-  damreiScript.src = '//ssp-cdn.gammaplatform.com/js/gaxpt.min.js';
-  damreiScript.async = true;
-  damreiScript.onload = () => {
+  (window as any).gammatag.cmd.push(function () {
     const gt = (window as any).gammatag;
     const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
-    gt.cmd.push(function () {
-      // Popup (both mobile & desktop)
-      gt.defineZone({ code: 'gax-inpage-async-1700710540', size: [282, 370], params: { siteId: '1700707896', zoneId: '1700710540', zoneType: 'Inpage' } });
+    // Popup (both mobile & desktop)
+    gt.defineZone({ code: 'gax-inpage-async-1700710540', size: [282, 370], params: { siteId: '1700707896', zoneId: '1700710540', zoneType: 'Inpage' } });
 
-      // Underlay Zone 1 (both mobile & desktop)
-      gt.defineZone({ code: 'gax-inpage-async-1700710878', size: [640, 1386], params: { siteId: '1700707896', zoneId: '1700710878', zoneType: 'Inpage' } });
+    // Underlay Zone 1 (both mobile & desktop)
+    gt.defineZone({ code: 'gax-inpage-async-1700710878', size: [640, 1386], params: { siteId: '1700707896', zoneId: '1700710878', zoneType: 'Inpage' } });
 
-      // Underlay Zone 2 (both mobile & desktop)
-      gt.defineZone({ code: 'gax-inpage-async-1706848594', size: [640, 1386], params: { siteId: '1700707896', zoneId: '1706848594', zoneType: 'Inpage' } });
+    // Underlay Zone 2 (both mobile & desktop)
+    gt.defineZone({ code: 'gax-inpage-async-1706848594', size: [640, 1386], params: { siteId: '1700707896', zoneId: '1706848594', zoneType: 'Inpage' } });
 
-      if (isMobile) {
-        // MR1 Zone1
-        gt.defineZone({ code: 'gax-inpage-async-1700710395', size: [300, 250], params: { siteId: '1700707896', zoneId: '1700710395', zoneType: 'Inpage' } });
-        // MR1 Zone2
-        gt.defineZone({ code: 'gax-inpage-async-1726804113', size: [300, 250], params: { siteId: '1700707896', zoneId: '1726804113', zoneType: 'Inpage' } });
-        // Footer
-        gt.defineZone({ code: 'gax-inpage-async-1700710858', size: [720, 250], params: { siteId: '1700707896', zoneId: '1700710858', zoneType: 'Inpage' } });
-      } else {
-        // Desktop zones
-        gt.defineZone({ code: 'gax-inpage-async-1706497007', size: [1600, 900], params: { siteId: '1706496252', zoneId: '1706497007', zoneType: 'Inpage' } });
-        gt.defineZone({ code: 'gax-inpage-async-1719845094', size: [300, 250], params: { siteId: '1706496252', zoneId: '1719845094', zoneType: 'Inpage' } });
-      }
+    if (isMobile) {
+      // MR1 Zone1
+      gt.defineZone({ code: 'gax-inpage-async-1700710395', size: [300, 250], params: { siteId: '1700707896', zoneId: '1700710395', zoneType: 'Inpage' } });
+      // MR1 Zone2
+      gt.defineZone({ code: 'gax-inpage-async-1726804113', size: [300, 250], params: { siteId: '1700707896', zoneId: '1726804113', zoneType: 'Inpage' } });
+      // Footer
+      gt.defineZone({ code: 'gax-inpage-async-1700710858', size: [720, 250], params: { siteId: '1700707896', zoneId: '1700710858', zoneType: 'Inpage' } });
+    } else {
+      // Desktop zones
+      gt.defineZone({ code: 'gax-inpage-async-1706497007', size: [1600, 900], params: { siteId: '1706496252', zoneId: '1706497007', zoneType: 'Inpage' } });
+      gt.defineZone({ code: 'gax-inpage-async-1719845094', size: [300, 250], params: { siteId: '1706496252', zoneId: '1719845094', zoneType: 'Inpage' } });
+    }
 
-      gt.sendRequest();
-    });
-  };
-  document.head.appendChild(damreiScript);
+    gt.sendRequest();
+  });
 });
 
 let thumbnail = article.value.thumbnail;
@@ -212,8 +204,18 @@ useHead({
       src: 'https://platform.twitter.com/widgets.js',
       async: true,
     },
-    // Damrei (gaxpt.min.js) and zone initialization loaded dynamically in onMounted
-
+    {
+      src: '//ssp-cdn.gammaplatform.com/js/gaxpt.min.js',
+      async: true,
+    },
+    {
+      type: 'text/javascript',
+      innerHTML: `
+        var _ase_region="SGP";
+        var gammatag = gammatag || {};
+        gammatag.cmd = gammatag.cmd || [];
+      `,
+    },
   ],
   // else {
   //       gammatag.cmd.push(function() {
