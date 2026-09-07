@@ -103,8 +103,6 @@
               </div>
 
               <div id="part-3">
-                <!-- Gpas Underlay [HIDDEN] -->
-                <!-- <ins data-revive-zoneid="399" data-revive-id="2d10743d9880200bf17a894cfa35dba0"></ins> -->
                 <AdsBody :ads="thirdParagraphAds" id="paragraph-3" :body="3" />
                 <div v-html="splitBody().thirdPart" class="article_body"></div>
 
@@ -123,11 +121,6 @@
 
                 <!-- Zone Tag : Healthy Cambodia Mobile Overaly UT ad-->
                 <div id="div-ad-innity-96618/0"></div>
-                <!-- GPAS Underlay - Phosphalugel Oct -->
-                 <!-- <ins
-                  data-revive-zoneid="575"
-                  data-revive-id="2d10743d9880200bf17a894cfa35dba0"
-                ></ins> -->
               </div>
             </div>
           </div>
