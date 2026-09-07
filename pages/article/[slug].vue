@@ -116,48 +116,173 @@ const damreiAds = [
   'news',
 ].includes(article.value.category.slug);
 
-onMounted(() => {
+onMounted(async () => {
   handleArticleViewed(article.value);
 
-
-  // Initialize and request Damrei (Gamma) ad zones
+  (window as any)._ase_region = 'SGP';
   (window as any).gammatag = (window as any).gammatag || {};
   (window as any).gammatag.cmd = (window as any).gammatag.cmd || [];
 
-  (window as any).gammatag.cmd.push(function () {
+  await nextTick();
+
+  let adsInitialized = false;
+
+  const initDamrei = () => {
+    if (adsInitialized) return;
     const gt = (window as any).gammatag;
+    if (!gt || typeof gt.defineZone !== 'function' || typeof gt.sendRequest !== 'function') return;
+
+    adsInitialized = true;
     const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
-    // Popup (both mobile & desktop)
-    gt.defineZone({ code: 'gax-inpage-async-1700710540', size: [282, 370], params: { siteId: '1700707896', zoneId: '1700710540', zoneType: 'Inpage' } });
-
-    // Underlay Zone 1 (both mobile & desktop)
-    gt.defineZone({ code: 'gax-inpage-async-1700710878', size: [640, 1386], params: { siteId: '1700707896', zoneId: '1700710878', zoneType: 'Inpage' } });
-
-    // Underlay Zone 2 (both mobile & desktop)
-    gt.defineZone({ code: 'gax-inpage-async-1706848594', size: [640, 1386], params: { siteId: '1700707896', zoneId: '1706848594', zoneType: 'Inpage' } });
+    console.log('[Damrei] Initializing zones for', isMobile ? 'Mobile' : 'Desktop');
 
     if (isMobile) {
+      // Popup Mobile
+      if (document.getElementById('gax-inpage-async-1700710540')) {
+        gt.defineZone({ code: 'gax-inpage-async-1700710540', size: [282, 370], params: { siteId: '1700707896', zoneId: '1700710540', zoneType: 'Inpage' } });
+      }
+      // Mobile Underlay Zone 1
+      if (document.getElementById('gax-inpage-async-1700710878')) {
+        gt.defineZone({ code: 'gax-inpage-async-1700710878', size: [640, 1386], params: { siteId: '1700707896', zoneId: '1700710878', zoneType: 'Inpage' } });
+      }
+      // Mobile Underlay Zone 2
+      if (document.getElementById('gax-inpage-async-1706848594')) {
+        gt.defineZone({ code: 'gax-inpage-async-1706848594', size: [640, 1386], params: { siteId: '1700707896', zoneId: '1706848594', zoneType: 'Inpage' } });
+      }
       // MR1 Zone1
-      gt.defineZone({ code: 'gax-inpage-async-1700710395', size: [300, 250], params: { siteId: '1700707896', zoneId: '1700710395', zoneType: 'Inpage' } });
+      if (document.getElementById('gax-inpage-async-1700710395')) {
+        gt.defineZone({ code: 'gax-inpage-async-1700710395', size: [300, 250], params: { siteId: '1700707896', zoneId: '1700710395', zoneType: 'Inpage' } });
+      }
       // MR1 Zone2
-      gt.defineZone({ code: 'gax-inpage-async-1726804113', size: [300, 250], params: { siteId: '1700707896', zoneId: '1726804113', zoneType: 'Inpage' } });
+      if (document.getElementById('gax-inpage-async-1726804113')) {
+        gt.defineZone({ code: 'gax-inpage-async-1726804113', size: [300, 250], params: { siteId: '1700707896', zoneId: '1726804113', zoneType: 'Inpage' } });
+      }
       // Footer
-      gt.defineZone({ code: 'gax-inpage-async-1700710858', size: [720, 250], params: { siteId: '1700707896', zoneId: '1700710858', zoneType: 'Inpage' } });
+      if (document.getElementById('gax-inpage-async-1700710858')) {
+        gt.defineZone({ code: 'gax-inpage-async-1700710858', size: [720, 250], params: { siteId: '1700707896', zoneId: '1700710858', zoneType: 'Inpage' } });
+      }
     } else {
-      // Desktop zones
-      gt.defineZone({ code: 'gax-inpage-async-1706497007', size: [1600, 900], params: { siteId: '1706496252', zoneId: '1706497007', zoneType: 'Inpage' } });
-      gt.defineZone({ code: 'gax-inpage-async-1719845094', size: [300, 250], params: { siteId: '1706496252', zoneId: '1719845094', zoneType: 'Inpage' } });
+      // Desktop Popup PC
+      if (document.getElementById('gax-inpage-async-1706497007')) {
+        gt.defineZone({ code: 'gax-inpage-async-1706497007', size: [1600, 900], params: { siteId: '1706496252', zoneId: '1706497007', zoneType: 'Inpage' } });
+      }
+      // Underlay Zone 1 (both mobile & desktop)
+      if (document.getElementById('gax-inpage-async-1700710878')) {
+        gt.defineZone({ code: 'gax-inpage-async-1700710878', size: [640, 1386], params: { siteId: '1700707896', zoneId: '1700710878', zoneType: 'Inpage' } });
+      }
+      // Underlay Zone 2 (both mobile & desktop)
+      if (document.getElementById('gax-inpage-async-1706848594')) {
+        gt.defineZone({ code: 'gax-inpage-async-1706848594', size: [640, 1386], params: { siteId: '1700707896', zoneId: '1706848594', zoneType: 'Inpage' } });
+      }
+      // Desktop MR1 (in Content.vue)
+      if (document.getElementById('gax-inpage-async-1709623758')) {
+        gt.defineZone({ code: 'gax-inpage-async-1709623758', size: [300, 250], params: { siteId: '1706496252', zoneId: '1709623758', zoneType: 'Inpage' } });
+      }
+      // Desktop MR1 (in [slug].vue)
+      if (document.getElementById('gax-inpage-async-1719845094')) {
+        gt.defineZone({ code: 'gax-inpage-async-1719845094', size: [300, 250], params: { siteId: '1706496252', zoneId: '1719845094', zoneType: 'Inpage' } });
+      }
+      // Footer sport
+      if (document.getElementById('gax-inpage-async-1718359631')) {
+        gt.defineZone({ code: 'gax-inpage-async-1718359631', size: [720, 250], params: { siteId: '1706496252', zoneId: '1718359631', zoneType: 'Inpage' } });
+      }
     }
 
+    console.log('[Damrei] Calling sendRequest()');
     gt.sendRequest();
-  });
+  };
+
+  if (typeof (window as any).gammatag?.defineZone === 'function') {
+    initDamrei();
+  } else {
+    let script = document.querySelector('script[src*="gaxpt.min.js"]') as HTMLScriptElement;
+    if (!script) {
+      script = document.createElement('script');
+      script.src = '//ssp-cdn.gammaplatform.com/js/gaxpt.min.js';
+      script.async = true;
+      document.head.appendChild(script);
+    }
+    script.addEventListener('load', () => {
+      initDamrei();
+    });
+
+    const timer = setInterval(() => {
+      if (typeof (window as any).gammatag?.defineZone === 'function') {
+        clearInterval(timer);
+        initDamrei();
+      }
+    }, 50);
+    setTimeout(() => clearInterval(timer), 5000);
+  }
 });
 
 let thumbnail = article.value.thumbnail;
 
 useHead({
   script: [
+    {
+      type: 'text/javascript',
+      innerHTML: `
+        var _ase_region="SGP";
+        var gammatag = gammatag || {};
+        gammatag.cmd = gammatag.cmd || [];
+      `,
+    },
+    {
+      type: 'text/javascript',
+      innerHTML: `
+      if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
+        gammatag.cmd.push(function() {
+          if(document.getElementById("gax-inpage-async-1700710540")){
+            gammatag.defineZone({code:"gax-inpage-async-1700710540",size:[282,370],params:{siteId:"1700707896",zoneId:"1700710540",zoneType:"Inpage"}});
+          }
+          if(document.getElementById("gax-inpage-async-1700710878")){
+            gammatag.defineZone({code:"gax-inpage-async-1700710878",size:[640,1386],params:{siteId:"1700707896",zoneId:"1700710878",zoneType:"Inpage"}});
+          }
+          if(document.getElementById("gax-inpage-async-1706848594")){
+            gammatag.defineZone({code:"gax-inpage-async-1706848594",size:[640,1386],params:{siteId:"1700707896",zoneId:"1706848594",zoneType:"Inpage"}});
+          }
+          if(document.getElementById("gax-inpage-async-1700710395")){
+            gammatag.defineZone({code:"gax-inpage-async-1700710395",size:[300,250],params:{siteId:"1700707896",zoneId:"1700710395",zoneType:"Inpage"}});
+          }
+          if(document.getElementById("gax-inpage-async-1726804113")){
+            gammatag.defineZone({code:"gax-inpage-async-1726804113",size:[300,250],params:{siteId:"1700707896",zoneId:"1726804113",zoneType:"Inpage"}});
+          }
+          if(document.getElementById("gax-inpage-async-1700710858")){
+            gammatag.defineZone({code:"gax-inpage-async-1700710858",size:[720,250],params:{siteId:"1700707896",zoneId:"1700710858",zoneType:"Inpage"}});
+          }
+          gammatag.sendRequest();
+        });
+      } else {
+        gammatag.cmd.push(function() {
+          if(document.getElementById("gax-inpage-async-1706497007")){
+            gammatag.defineZone({code:"gax-inpage-async-1706497007",size:[1600,900],params:{siteId:"1706496252",zoneId:"1706497007",zoneType:"Inpage"}});
+          }
+          if(document.getElementById("gax-inpage-async-1700710878")){
+            gammatag.defineZone({code:"gax-inpage-async-1700710878",size:[640,1386],params:{siteId:"1700707896",zoneId:"1700710878",zoneType:"Inpage"}});
+          }
+          if(document.getElementById("gax-inpage-async-1706848594")){
+            gammatag.defineZone({code:"gax-inpage-async-1706848594",size:[640,1386],params:{siteId:"1700707896",zoneId:"1706848594",zoneType:"Inpage"}});
+          }
+          if(document.getElementById("gax-inpage-async-1709623758")){
+            gammatag.defineZone({code:"gax-inpage-async-1709623758",size:[300,250],params:{siteId:"1706496252",zoneId:"1709623758",zoneType:"Inpage"}});
+          }
+          if(document.getElementById("gax-inpage-async-1719845094")){
+            gammatag.defineZone({code:"gax-inpage-async-1719845094",size:[300,250],params:{siteId:"1706496252",zoneId:"1719845094",zoneType:"Inpage"}});
+          }
+          if(document.getElementById("gax-inpage-async-1718359631")){
+            gammatag.defineZone({code:"gax-inpage-async-1718359631",size:[720,250],params:{siteId:"1706496252",zoneId:"1718359631",zoneType:"Inpage"}});
+          }
+          gammatag.sendRequest();
+        });
+      }
+      `,
+    },
+    {
+      src: '//ssp-cdn.gammaplatform.com/js/gaxpt.min.js',
+      async: true,
+    },
     {
       type: 'text/javascript',
       src: 'https://platform.twitter.com/widgets.js',
@@ -167,23 +292,6 @@ useHead({
       type: 'text/javascript',
       src: 'https://www.tiktok.com/embed.js',
       async: true,
-    },
-    {
-      type: 'text/javascript',
-      src: 'https://platform.twitter.com/widgets.js',
-      async: true,
-    },
-    {
-      src: '//ssp-cdn.gammaplatform.com/js/gaxpt.min.js',
-      async: true,
-    },
-    {
-      type: 'text/javascript',
-      innerHTML: `
-        var _ase_region="SGP";
-        var gammatag = gammatag || {};
-        gammatag.cmd = gammatag.cmd || [];
-      `,
     },
   ],
   // else {
