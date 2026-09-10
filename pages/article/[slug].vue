@@ -230,56 +230,6 @@ useHead({
       `,
     },
     {
-      type: 'text/javascript',
-      innerHTML: `
-      if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
-        gammatag.cmd.push(function() {
-          if(document.getElementById("gax-inpage-async-1700710540")){
-            gammatag.defineZone({code:"gax-inpage-async-1700710540",size:[282,370],params:{siteId:"1700707896",zoneId:"1700710540",zoneType:"Inpage"}});
-          }
-          if(document.getElementById("gax-inpage-async-1700710878")){
-            gammatag.defineZone({code:"gax-inpage-async-1700710878",size:[640,1386],params:{siteId:"1700707896",zoneId:"1700710878",zoneType:"Inpage"}});
-          }
-          if(document.getElementById("gax-inpage-async-1706848594")){
-            gammatag.defineZone({code:"gax-inpage-async-1706848594",size:[640,1386],params:{siteId:"1700707896",zoneId:"1706848594",zoneType:"Inpage"}});
-          }
-          if(document.getElementById("gax-inpage-async-1700710395")){
-            gammatag.defineZone({code:"gax-inpage-async-1700710395",size:[300,250],params:{siteId:"1700707896",zoneId:"1700710395",zoneType:"Inpage"}});
-          }
-          if(document.getElementById("gax-inpage-async-1726804113")){
-            gammatag.defineZone({code:"gax-inpage-async-1726804113",size:[300,250],params:{siteId:"1700707896",zoneId:"1726804113",zoneType:"Inpage"}});
-          }
-          if(document.getElementById("gax-inpage-async-1700710858")){
-            gammatag.defineZone({code:"gax-inpage-async-1700710858",size:[720,250],params:{siteId:"1700707896",zoneId:"1700710858",zoneType:"Inpage"}});
-          }
-          gammatag.sendRequest();
-        });
-      } else {
-        gammatag.cmd.push(function() {
-          if(document.getElementById("gax-inpage-async-1706497007")){
-            gammatag.defineZone({code:"gax-inpage-async-1706497007",size:[1600,900],params:{siteId:"1706496252",zoneId:"1706497007",zoneType:"Inpage"}});
-          }
-          if(document.getElementById("gax-inpage-async-1700710878")){
-            gammatag.defineZone({code:"gax-inpage-async-1700710878",size:[640,1386],params:{siteId:"1700707896",zoneId:"1700710878",zoneType:"Inpage"}});
-          }
-          if(document.getElementById("gax-inpage-async-1706848594")){
-            gammatag.defineZone({code:"gax-inpage-async-1706848594",size:[640,1386],params:{siteId:"1700707896",zoneId:"1706848594",zoneType:"Inpage"}});
-          }
-          if(document.getElementById("gax-inpage-async-1709623758")){
-            gammatag.defineZone({code:"gax-inpage-async-1709623758",size:[300,250],params:{siteId:"1706496252",zoneId:"1709623758",zoneType:"Inpage"}});
-          }
-          if(document.getElementById("gax-inpage-async-1719845094")){
-            gammatag.defineZone({code:"gax-inpage-async-1719845094",size:[300,250],params:{siteId:"1706496252",zoneId:"1719845094",zoneType:"Inpage"}});
-          }
-          if(document.getElementById("gax-inpage-async-1718359631")){
-            gammatag.defineZone({code:"gax-inpage-async-1718359631",size:[720,250],params:{siteId:"1706496252",zoneId:"1718359631",zoneType:"Inpage"}});
-          }
-          gammatag.sendRequest();
-        });
-      }
-      `,
-    },
-    {
       src: '//ssp-cdn.gammaplatform.com/js/gaxpt.min.js',
       async: true,
     },
@@ -293,18 +243,7 @@ useHead({
       src: 'https://www.tiktok.com/embed.js',
       async: true,
     },
-  ],
-  // else {
-  //       gammatag.cmd.push(function() {
-  //         // popup
-  //         gammatag.defineZone({code:"gax-inpage-async-1706497007",size:[1600,900],params:{siteId:"1706496252",zoneId:"1706497007",zoneType:"Inpage"}});
-  //         /* Define more zone(s) here, each zone per line, if you have multiple zones on the same page. */
-  //         // MR1 desktop
-  //         gammatag.defineZone({code:"gax-inpage-async-1719845094",size:[300,250],params:{siteId:"1706496252",zoneId:"1719845094",zoneType:"Inpage"}});  
-
-  //         gammatag.sendRequest();
-  //       });
-  //     } 
+  ], 
   title: article.value.title,
   meta: [
     {
