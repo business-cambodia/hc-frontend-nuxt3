@@ -1,11 +1,13 @@
 <!-- pages/article/[slug].vue -->
 <template>
   <AdsPopup :ad="popupAds[0]" :id="'popup_' + popupAds[0]?.slug" />
-  <!-- damrei popup pc -->
-  <div id="gax-inpage-async-1706497007"></div>
-  <!-- damrei popup mobile -->
-  <!-- <div  v-if="Math.random() < 0.5" id="gax-inpage-async-1700710540"></div> -->
-  <div   id="gax-inpage-async-1700710540"></div>
+  <!-- damrei popup pc (80%) -->
+  <div v-if="!showMSAPopup" id="gax-inpage-async-1706497007"></div>
+  <!-- damrei popup mobile (80%) -->
+  <div v-if="!showMSAPopup" id="gax-inpage-async-1700710540"></div>
+
+  <!-- Healthy Cambodia - Popup (Zone 137 Mobile, Zone 143 Desktop) - MSA (20%) -->
+  <AdsMSAPopup v-if="showMSAPopup" />
 
   <div class="pt-20 lg:pt-24 bg-gray-100" id="article_detail">
     <ArticleContent
@@ -116,8 +118,12 @@ const damreiAds = [
   'news',
 ].includes(article.value.category.slug);
 
+const showMSAPopup = ref(false);
+
 onMounted(async () => {
   handleArticleViewed(article.value);
+
+  showMSAPopup.value = Math.random() < 0.2;
 
   (window as any)._ase_region = 'SGP';
   (window as any).gammatag = (window as any).gammatag || {};
@@ -138,8 +144,8 @@ onMounted(async () => {
     console.log('[Damrei] Initializing zones for', isMobile ? 'Mobile' : 'Desktop');
 
     if (isMobile) {
-      // Popup Mobile
-      if (document.getElementById('gax-inpage-async-1700710540')) {
+      // Mobile Popup (80% Damrey)
+      if (!showMSAPopup.value && document.getElementById('gax-inpage-async-1700710540')) {
         gt.defineZone({ code: 'gax-inpage-async-1700710540', size: [282, 370], params: { siteId: '1700707896', zoneId: '1700710540', zoneType: 'Inpage' } });
       }
       // Mobile Underlay Zone 1
@@ -163,8 +169,8 @@ onMounted(async () => {
         gt.defineZone({ code: 'gax-inpage-async-1700710858', size: [720, 250], params: { siteId: '1700707896', zoneId: '1700710858', zoneType: 'Inpage' } });
       }
     } else {
-      // Desktop Popup PC
-      if (document.getElementById('gax-inpage-async-1706497007')) {
+      // Desktop Popup PC (80% Damrey)
+      if (!showMSAPopup.value && document.getElementById('gax-inpage-async-1706497007')) {
         gt.defineZone({ code: 'gax-inpage-async-1706497007', size: [1600, 900], params: { siteId: '1706496252', zoneId: '1706497007', zoneType: 'Inpage' } });
       }
       // Underlay Zone 1 (both mobile & desktop)
